@@ -1,7 +1,5 @@
 package com.orange.dictacloud;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -58,9 +56,9 @@ public class LoginActivity extends AppCompatActivity {
         mSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String pseudo = mPseudoView1.getText().toString();
+                String pseudo = mPseudoView.getText().toString();
                 String email = mEmailView.getText().toString();
-                String passwd = mPasswordView1.getText().toString();
+                String passwd = mPasswordView.getText().toString();
                 attemptLogin(Constants.SUBSCRIBE, pseudo, email, passwd);
             }
         });
@@ -69,9 +67,9 @@ public class LoginActivity extends AppCompatActivity {
         mRegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String pseudo = mPseudoView.getText().toString();
+                String pseudo = mPseudoView1.getText().toString();
                 String email = mEmailView.getText().toString();
-                String passwd = mPasswordView.getText().toString();
+                String passwd = mPasswordView1.getText().toString();
                 attemptLogin(Constants.REGISTER, pseudo, email, passwd);
             }
         });
@@ -114,18 +112,6 @@ public class LoginActivity extends AppCompatActivity {
                             finish();
                         } else {
                             //TODO affficher une popup avec le message d'erreur
-                            String errorMessage=pieces[2];
-                            AlertDialog.Builder alertDialog;
-                            alertDialog = new AlertDialog.Builder(LoginActivity.this);
-                            alertDialog.setTitle(getString(R.string.popup_error_title));
-                            alertDialog.setMessage(errorMessage);
-                            alertDialog.setPositiveButton("Yes",new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int id) {
-                                            // if this button is clicked, close
-                                            // current activity
-                                            LoginActivity.this.finish();
-                                        }
-                                    });
                             Log.d(TAG, "BFR : requete KO [" + mRequete + "] = " + mResult);
                             statusResponse = false;
                         }
