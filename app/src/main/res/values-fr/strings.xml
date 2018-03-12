@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DictaCloud</string>
+    <string name="action_settings">Péférences</string>
+    <string name="action_about">A propos</string>
+    <string name="title_activity_setting">Préférences</string>
+    <string name="title_activity_about">A propos</string>
+    <string name="prompt_email">Email</string>
+    <string name="action_sign_in">S\'insrire</string>
+    <string name="action_sign_in_short">s\'inscrire</string>
+    <string name="error_invalid_email">Cette adresse mail est invalide</string>
+    <string name="error_incorrect_password">Ce mot de passe est incorrect</string>
+    <string name="error_field_required">Ce champ est obligatoire</string>
+    <string name="permission_rationale">L\'accès aux contacts est nécessaire pour la complétion de l\'adresse amil</string>
+    <string name="title_activity_login">S\'inscrire</string>
+    <string name="prompt_password">Mot de passe</string>
+    <string name="action_login">Login</string>
+    <string name="welcome_message">Bienvenue %s sur Dictacloud</string>
+    <string name="presentation_message">Cette application vous permet d\'enregistrer en temps réel vos video audio et photo dans le cloud.</string>
+    <string name="action_register">S\'enregistrer</string>
+    <string name="error_invalid_password">Ce mot de passe est invalide</string>
+    <string name="error_invalid_pseudo">Ce Pseudo est invalide</string>
+    <string name="content_setting_server_label">Nom du serveur</string>
+    <string name="content_setting_prompt_server">nom ou @IP</string>
+    <string name="content_setting_button_clear_pref">Effacer les préférences</string>
+    <string name="preferences_cleared">les préférences sont effacées</string>
+    <string name="external_server">Accès externe</string>
+    <string name="internal_server">Accès interne</string>
+    <string name="select_media_message">Sélectionnez le type de média que vous souhaitez enregistrer dans le cloud</string>
+    <string name="start_record">Débuter l\'enregistrement</string>
+    <string name="welcome_record_photo">Enregistrement de photos</string>
+    <string name="button_take_photo">Prendre la photo</string>
+    <string name="photo_recorded">Votre photo est enregistrée sur le serveur</string>
+</resources>

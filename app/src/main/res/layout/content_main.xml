@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="20dp"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.orange.dictacloud.MainActivity"
+    tools:showIn="@layout/activity_main">
+
+
+    <TextView
+        android:id="@+id/welcome_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="30dp"
+        android:gravity="center_horizontal"
+        android:text="@string/welcome_message"
+        />
+
+    <TextView
+        android:id="@+id/presentation_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/welcome_message"
+        android:layout_marginTop="16dp"
+        android:text="@string/presentation_message"
+        />
+
+    <TextView
+        android:id="@+id/select_media_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/presentation_message"
+        android:layout_marginTop="25dp"
+        android:text="@string/select_media_message"
+        />
+
+
+    <LinearLayout
+        android:id="@+id/select_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/select_media_message">
+
+        <RadioGroup
+            android:id="@+id/Radiobt_select_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/RadioBt_select_input_photo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="64dp"
+                android:onClick="onRadioButtonClicked"
+                android:text="@string/media_select_photo"/>
+
+            <RadioButton
+                android:id="@+id/RadioBt_select_input_video"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="64dp"
+                android:onClick="onRadioButtonClicked"
+                android:text="@string/media_select_video"/>
+
+            <RadioButton
+                android:id="@+id/RadioBt_select_input_audio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="64dp"
+                android:onClick="onRadioButtonClicked"
+                android:text="@string/media_select_audio"/>
+
+        </RadioGroup>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/start_record_button"
+        style="?android:textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/select_input"
+        android:layout_marginTop="25dp"
+        android:onClick="startRecording"
+        android:text="@string/start_record"
+        android:textStyle="bold"/>
+
+</RelativeLayout>
