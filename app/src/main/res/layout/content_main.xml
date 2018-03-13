@@ -21,11 +21,21 @@
         android:text="@string/welcome_message"
         />
 
+    <ImageView
+        android:id="@+id/application_icon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/welcome_message"
+        android:layout_marginTop="16dp"
+        android:gravity="center_horizontal"
+        android:src="@mipmap/dictacloud"
+        />
+
     <TextView
         android:id="@+id/presentation_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/welcome_message"
+        android:layout_below="@+id/application_icon"
         android:layout_marginTop="16dp"
         android:text="@string/presentation_message"
         />

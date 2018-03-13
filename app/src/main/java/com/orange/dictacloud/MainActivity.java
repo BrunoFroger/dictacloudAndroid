@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Set;
 
@@ -55,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
         mUserName = preferences.getString(Constants.PSEUDO,"");
         TextView welcomeTextView = findViewById(R.id.welcome_message);
         welcomeTextView.setText(String.format(getString(R.string.welcome_message),mUserName));
-
     }
 
     @Override
@@ -121,18 +121,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void startRecording(View view){
-        Log.d(TAG, "BFR : Debut d'enregistrement " + mMediaType);
-        switch (mMediaType) {
-            case Constants.MEDIA_PHOTO:
-                Intent settingIntent = new Intent(MainActivity.this, RecordPhoto.class);
-                startActivity(settingIntent);
-                break;
-            case Constants.MEDIA_VIDEO:
 
-                break;
-            case Constants.MEDIA_AUDIO:
-
-                break;
+        // check if user is registered
+        if (mUserName == null || mUserName == ""){
+            Toast.makeText(this, getString(R.string.register_message), Toast.LENGTH_LONG).show();
+        }else{
+            Log.d(TAG, "BFR : Debut d'enregistrement " + mMediaType);
+            switch (mMediaType) {
+                case Constants.MEDIA_PHOTO:
+                    Intent settingIntent = new Intent(MainActivity.this, RecordPhoto.class);
+                    startActivity(settingIntent);
+                    break;
+                case Constants.MEDIA_VIDEO:
+                    Toast.makeText(this, getString(R.string.not_implemented), Toast.LENGTH_LONG).show();
+                    break;
+                case Constants.MEDIA_AUDIO:
+                    Toast.makeText(this, getString(R.string.not_implemented), Toast.LENGTH_LONG).show();
+                    break;
+            }
         }
     }
 

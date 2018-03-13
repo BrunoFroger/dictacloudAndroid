@@ -31,4 +31,7 @@
     <string name="welcome_record_photo">Enregistrement de photos</string>
     <string name="button_take_photo">Prendre la photo</string>
     <string name="photo_recorded">Votre photo est enregistrée sur le serveur</string>
+    <string name="register_message">Enregistrez vous avant de faire des enregistrements</string>
+    <string name="not_implemented">Pas encore implémenté</string>
+    <string name="title_activity_recordphoto">Enregistrement de photos</string>
 </resources>

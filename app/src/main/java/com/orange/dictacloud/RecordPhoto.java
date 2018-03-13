@@ -132,12 +132,6 @@ public class RecordPhoto extends AppCompatActivity {
                         if (mResult.equals("OK")) {
                             Log.d(TAG, "BFR : requete OK [" + mRequete + "] = " + mResult);
                             statusResponse = true;
-                            // sauvegarde des valeurs saisies dans les preferences
-                            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(RecordPhoto.this);
-                            SharedPreferences.Editor editor = preferences.edit();
-                            Log.d(TAG, "BFR attemptLogin : mPseudo stocké dans les preferences : " + mPseudo);
-                            editor.putString(Constants.PSEUDO, mPseudo);
-                            editor.commit();
                             Toast.makeText(RecordPhoto.this, getString(R.string.photo_recorded), Toast.LENGTH_LONG).show();
                             finish();
                         } else {
@@ -161,7 +155,7 @@ public class RecordPhoto extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                //Log.d(TAG, "BFR : getParams : " + requete + ":" + pseudo + ":" + email + ":" + passwd);
+                //Log.d(TAG, "BFR : getParams : " + requete + ":" + pseudo);
                 params.put("REQUETE", "sendPhoto");
                 params.put("PSEUDO", pseudo);
 
