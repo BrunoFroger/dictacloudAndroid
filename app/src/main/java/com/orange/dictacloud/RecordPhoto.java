@@ -107,7 +107,7 @@ public class RecordPhoto extends AppCompatActivity {
         }
     };
 
-    private boolean sendPhoto(byte[] bytes, final String pseudo, String filename) {
+    private boolean sendPhoto(final byte[] bytesPhoto, final String pseudo, String filename) {
         // todo envoyer le fichier sur le serveur
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -166,11 +166,24 @@ public class RecordPhoto extends AppCompatActivity {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap();
-                params.put("Content-type", "text/html");
+                params.put("Content-type", "multipart/form-data");
+                params.put("Content-disposition", "text/html");
+                params.put("Content-disposition", "image/jpeg");
                 Log.d(TAG, "BFR : getHeader : " + params.toString());
                 return super.getHeaders();
             }
 
+            @Override
+            public String getBodyContentType() {
+                return bytesPhoto.toString();
+                //return super.getBodyContentType();
+            }
+
+            @Override
+            public byte[] getBody() throws AuthFailureError {
+                return bytesPhoto;
+                //return super.getBody();
+            }
         };
 
         mQueue.add(postRequest);

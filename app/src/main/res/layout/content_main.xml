@@ -24,7 +24,7 @@
     <ImageView
         android:id="@+id/application_icon"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="96dp"
         android:layout_below="@+id/welcome_message"
         android:layout_marginTop="16dp"
         android:gravity="center_horizontal"
