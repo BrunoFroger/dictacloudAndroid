@@ -21,6 +21,7 @@
     <string name="welcome_record_photo">Record Photos</string>
     <string name="button_take_photo">Take picture</string>
     <string name="photo_recorded">Your photo is recorded on the server</string>
+    <string name="photo_error_result">Unexpected result</string>
 
     <!--        Settings activity   -->
     <string name="content_setting_server_label">Server name</string>
@@ -39,6 +40,7 @@
     <!-- Strings related to login -->
     <string name="prompt_pseudo">Pseudo</string>
     <string name="prompt_email">Email</string>
+    <string name="prompt_compress">Compression rate</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in</string>
     <string name="action_register">Register</string>
@@ -52,7 +54,12 @@
 
     <!--    popup  -->
     <string name="popup_error_title">Error</string>
+    <string name="popup_error_http_message">Bad http request : %s</string>
     <string name="popup_ok">OK</string>
+    <string name="popup_cancel">Cancel</string>
     <string name="register_message">Register before recording</string>
+    <string name="register_ok">Register OK</string>
+    <string name="register_ko">Register KO : %s</string>
+    <string name="title_activity_error_display">errorDisplay</string>
 
 </resources>

@@ -94,10 +94,29 @@
             android:layout_height="wrap_content"/>
     </LinearLayout>
 
-    <Button
+    <LinearLayout
+        android:id="@+id/settings_compression"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/settings_email"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/prompt_compress"/>
+
+        <EditText
+            android:id="@+id/content_setting_compress_value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"/>
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/settings_compression"
         android:layout_marginTop="30dp"
         android:gravity="center_horizontal"
         android:onClick="mBtClearPreferencesClickListener"

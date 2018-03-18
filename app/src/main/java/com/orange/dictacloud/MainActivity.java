@@ -37,15 +37,21 @@ public class MainActivity extends AppCompatActivity {
 
         mMediaType = preferences.getString(Constants.MEDIA_TYPE,"");
         RadioButton mediaSelected;
-        if (mMediaType.equals(Constants.MEDIA_PHOTO)) {
-            mediaSelected = (RadioButton) findViewById(R.id.RadioBt_select_input_photo);
+        if (mMediaType.equals(Constants.MEDIA_AUDIO)) {
+            mediaSelected = (RadioButton) findViewById(R.id.RadioBt_select_input_audio);
         } else if (mMediaType.equals(Constants.MEDIA_VIDEO)) {
             mediaSelected = (RadioButton) findViewById(R.id.RadioBt_select_input_video);
         } else {
-            mediaSelected = (RadioButton) findViewById(R.id.RadioBt_select_input_audio);
+            mediaSelected = (RadioButton) findViewById(R.id.RadioBt_select_input_photo);
+            mMediaType = Constants.MEDIA_PHOTO;
         }
         mediaSelected.toggle();
-
+        int compressRate = preferences.getInt(Constants.TAUX_COMPRESSION, 0);
+        if (compressRate == 0){
+            compressRate = Constants.TAUX_COMPRESSION_DEFAULT;
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putInt(Constants.TAUX_COMPRESSION, compressRate);
+        }
     }
 
     @Override

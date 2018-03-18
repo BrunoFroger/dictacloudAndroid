@@ -8,14 +8,18 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText mEmailView;
     private EditText mPasswordView;
     private RequestQueue mQueue;
-    public boolean statusResponse;
+    public boolean statusResponse = true;
     public String mPassword;
     public String mEmail;
     public String mPseudo;
@@ -40,6 +44,7 @@ public class LoginActivity extends AppCompatActivity {
     public String mRequete;
     private EditText mPseudoView1;
     private EditText mPasswordView1;
+    private JSONObject mJsonResponse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,12 +86,61 @@ public class LoginActivity extends AppCompatActivity {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         String url = preferences.getString(Constants.ACCESS_SERVER, "");
 
-                StringRequest postRequest = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>() {
+        JSONObject jsonParams = new JSONObject();
+        try {
+            jsonParams.put("REQUETE", requete);
+            jsonParams.put("PSEUDO", pseudo);
+
+            if (requete.equals(Constants.SUBSCRIBE)) {
+                jsonParams.put("EMAIL", email);
+            }
+            jsonParams.put("PASSWD", passwd);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonObjectRequest postRequest = new JsonObjectRequest(Request.Method.POST,
+                url, jsonParams,
+                new Response.Listener<JSONObject>() {
                     @Override
-                    public void onResponse(String response) {
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG, "BFR : Response du serveur : <" + response.toString() + ">");
+
+                        mJsonResponse = response;
+                        // extraction des donnees recues du serveur
+                        try {
+                            mRequete = mJsonResponse.getString("REQUETE");
+                            mResult = mJsonResponse.getString("RESULT");
+                            mPseudo = mJsonResponse.getString("PSEUDO");
+                            if (mJsonResponse.has("EMAIL")) {
+                                mEmail = mJsonResponse.getString("EMAIL");
+                            }
+                            if (mJsonResponse.has("PASSWD")) {
+                                mPassword = mJsonResponse.getString("PASSWD");
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        // sauvegarde des valeurs saisies dans les preferences
+                        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(LoginActivity.this);
+                        SharedPreferences.Editor editor = preferences.edit();
+                        Log.d(TAG, "BFR attemptLogin : mPseudo stocké dans les preferences : " + mPseudo);
+                        editor.putString(Constants.PSEUDO, mPseudo);
+                        editor.commit();
+                        Log.d(TAG, "BFR attemptLogin : mEmail stocké dans les preferences : " + mEmail);
+                        editor.putString(Constants.EMAIL, mEmail);
+                        editor.commit();
+                        Toast.makeText(LoginActivity.this, getString(R.string.register_ok), Toast.LENGTH_LONG).show();
+
+                        statusResponse = true;
+                        finish();
+                    }
+                },
+
+                    /*
+                    @Override
+                    public void onResponse(JSONObject response) {
                         // response
-                        //Log.d(TAG, "BFR : Response du serveur : <" + response + ">");
+                        /*
                         String[] pieces = response.split(":");
                         Log.d(TAG, "BFR : Response du serveur : <" + response + "> nb champs = " + pieces.length);
                         // en retour on a les donnees suivantes :
@@ -95,56 +149,92 @@ public class LoginActivity extends AppCompatActivity {
                         mResult = pieces[1];
                         mPseudo = pieces[2];
                         mEmail = pieces[3];
-                        mPassword = pieces[4];
+                        if (pieces.length > 4){
+                            mPassword = pieces[4];
+                        }
 
                         if (mResult.equals("OK")) {
                             Log.d(TAG, "BFR : requete OK [" + mRequete + "] = " + mResult);
                             statusResponse = true;
-                            // sauvegarde des valeurs saisies dans les preferences
-                            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(LoginActivity.this);
-                            SharedPreferences.Editor editor = preferences.edit();
-                            Log.d(TAG,"BFR attemptLogin : mPseudo stocké dans les preferences : " + mPseudo);
-                            editor.putString(Constants.PSEUDO, mPseudo);
-                            editor.commit();
-                            Log.d(TAG,"BFR attemptLogin : mEmail stocké dans les preferences : " + mEmail);
-                            editor.putString(Constants.EMAIL, mEmail);
-                            editor.commit();
+
                             finish();
                         } else {
                             //TODO affficher une popup avec le message d'erreur
                             Log.d(TAG, "BFR : requete KO [" + mRequete + "] = " + mResult);
+                            Toast.makeText(LoginActivity.this, String.format(getString(R.string.register_ko),mResult), Toast.LENGTH_LONG).show();
                             statusResponse = false;
-                        }
-                    }
-                },
+                        }*/
+                //}*/
+                //},
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // todo afficher popup d'erreur
+                        statusResponse = false;
                         Log.d(TAG, "BFR : Error.Response : <" + error.toString() + ">");
                     }
                 }
         ) {
 
+            /*
+            @Override
+            public byte[] getBody() {
+                Map<String, String> jsonParams = new HashMap<>();
+                //Log.d(TAG, "BFR : getBody : parametres : " + requete + ":" + pseudo + ":" + email + ":" + passwd);
+                jsonParams.put("REQUETE", requete);
+                jsonParams.put("PSEUDO", pseudo);
+                if (requete.equals(Constants.SUBSCRIBE)) {
+                    jsonParams.put("EMAIL", email);
+                }
+                jsonParams.put("PASSWD", passwd);
+                String params = new Gson().toJson(jsonParams);
+                Log.d(TAG, "BFR : getBody : json :" + params);
+                return params.getBytes();
+            }*/
+
+            /*
+            @Override
+            public String getBodyContentType() {
+                return super.getBodyContentType();
+            }*/
+
+            /*
+            @Override
+            public byte[] getPostBody() throws AuthFailureError {
+                Map<String, String> jsonParams = new HashMap<>();
+                //Log.d(TAG, "BFR : getBody : parametres : " + requete + ":" + pseudo + ":" + email + ":" + passwd);
+                jsonParams.put("REQUETE", requete);
+                jsonParams.put("PSEUDO", pseudo);
+                if (requete.equals(Constants.SUBSCRIBE)) {
+                    jsonParams.put("EMAIL", email);
+                }
+                jsonParams.put("PASSWD", passwd);
+                String params = new Gson().toJson(jsonParams);
+                Log.d(TAG, "BFR : getBody : json :" + params);
+                return params.getBytes();
+            }*/
+
+            /*
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                //Log.d(TAG, "BFR : getParams : " + requete + ":" + pseudo + ":" + email + ":" + passwd);
-                params.put("REQUETE", requete);
-                params.put("PSEUDO", pseudo);
+                Map<String, String> jsonParams = new HashMap<>();
+                //Log.d(TAG, "BFR : getParams : parametres : " + requete + ":" + pseudo + ":" + email + ":" + passwd);
+                jsonParams.put("REQUETE", requete);
+                jsonParams.put("PSEUDO", pseudo);
                 if (requete.equals(Constants.SUBSCRIBE)) {
-                    params.put("EMAIL", email);
+                    jsonParams.put("EMAIL", email);
                 }
-                params.put("PASSWD", passwd);
-
-                Log.d(TAG, "BFR : getParams : " + params.toString());
-                return params;
-            }
+                jsonParams.put("PASSWD", passwd);
+                String params = new Gson().toJson(jsonParams);
+                Log.d(TAG, "BFR : getParams : json :" + jsonParams);
+                return jsonParams;
+            }*/
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap();
-                params.put("Content-type", "text/html");
+                //params.put("Content-type", "text/html");
+                params.put("Content-Type", "application/json");
                 Log.d(TAG, "BFR : getHeader : " + params.toString());
                 return super.getHeaders();
             }
@@ -163,5 +253,13 @@ public class LoginActivity extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    protected void onDestroy() {
+
+
+
+
+        super.onDestroy();
+    }
 }
 

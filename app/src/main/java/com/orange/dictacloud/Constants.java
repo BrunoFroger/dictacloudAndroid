@@ -21,6 +21,10 @@ public class Constants {
     public final static String ACCESS_SERVER = "AccessServer";
     public final static String MEDIA_TYPE = "MediaType";
     public final static String LOGIN_DATE = "LoginDate";
+    public final static String TAUX_COMPRESSION = "CrompressionRate";
+
+    // constantes
+    public final static int TAUX_COMPRESSION_DEFAULT = 10;
 
     // Requetes vers serveur
     public final static String SUBSCRIBE="subsribe";

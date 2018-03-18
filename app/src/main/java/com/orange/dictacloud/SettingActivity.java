@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,6 +19,7 @@ public class SettingActivity extends AppCompatActivity {
     private TextView mServerView;
     private TextView mPseudoView;
     private TextView mEmailView;
+    private EditText mCompressView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,15 +52,23 @@ public class SettingActivity extends AppCompatActivity {
             mEmailView.setText(Constants.EMAIL);
         }
 
-        super.onCreate(savedInstanceState);
+        mCompressView = (EditText) findViewById(R.id.content_setting_compress_value);
+        int compressionRate = preferences.getInt(Constants.TAUX_COMPRESSION, 0);
+        if (compressionRate != 0) {
+            mCompressView.setText(""+compressionRate);
+        } else {
+            mCompressView.setText("" + Constants.TAUX_COMPRESSION_DEFAULT);
+        }
+
         String accesServer = preferences.getString(Constants.ACCESS_SERVER,"");
         RadioButton activePf;
-        if (accesServer.equals(Constants.EXTERNAL_SERVER)) {
-            activePf = (RadioButton) findViewById(R.id.RadioBt_server_external);
-        } else {
+        if (accesServer.equals(Constants.INTERNAL_SERVER)) {
             activePf = (RadioButton) findViewById(R.id.RadioBt_server_internal);
+        } else {
+            activePf = (RadioButton) findViewById(R.id.RadioBt_server_external);
         }
         activePf.toggle();
+        super.onCreate(savedInstanceState);
     }
 
 
@@ -95,4 +106,17 @@ public class SettingActivity extends AppCompatActivity {
         finish();
     }
 
+    @Override
+    protected void onDestroy() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        int savedCompressRate = preferences.getInt(Constants.TAUX_COMPRESSION, 0);
+        int newCompressRate = Integer.parseInt(mCompressView.getText().toString());
+        if (newCompressRate != savedCompressRate){
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putInt(Constants.TAUX_COMPRESSION,newCompressRate);
+            editor.commit();
+        }
+        Log.d(TAG, "BFR : update compression rate " + newCompressRate);
+        super.onDestroy();
+    }
 }

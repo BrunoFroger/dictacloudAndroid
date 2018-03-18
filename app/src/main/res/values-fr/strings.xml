@@ -34,4 +34,6 @@
     <string name="register_message">Enregistrez vous avant de faire des enregistrements</string>
     <string name="not_implemented">Pas encore implémenté</string>
     <string name="title_activity_recordphoto">Enregistrement de photos</string>
+    <string name="photo_error_result">Résultat non attendu</string>
+    <string name="prompt_compress">Taux de compression</string>
 </resources>

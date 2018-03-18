@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp">
+
+    <TextView
+        android:id="@+id/popup_error_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:text="@string/popup_error_title"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:id="@+id/popup_confirm_video_share_message"
+        android:layout_below="@id/popup_error_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/popup_error_http_message"/>
+
+    <LinearLayout
+        android:id="@+id/popup_confirm_video_share_button_row"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/popup_confirm_video_share_message"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_Popup_error_Ko"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_weight="50"
+            android:background="@drawable/cancel_button"
+            android:text="@string/popup_cancel"
+            android:textColor="@color/colorBlack"/>
+
+        <Button
+            android:id="@+id/btn_Popup_error_Ok"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="50"
+            android:background="@color/colorPrimary"
+            android:text="@string/popup_ok"/>
+
+    </LinearLayout>
+</RelativeLayout>
