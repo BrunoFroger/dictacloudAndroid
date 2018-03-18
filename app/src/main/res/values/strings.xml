@@ -30,20 +30,25 @@
     <string name="content_setting_prompt_server">Name or @IP</string>
     <string name="content_setting_button_validation">Validation</string>
     <string name="content_setting_button_clear_pref">Clear Preferences</string>
+    <string name="prompt_compress">Photo quality (%)</string>
     <string name="preferences_cleared">Preferences cleared</string>
     <string name="external_server">External access</string>
     <string name="internal_server">Internal access</string>
+
+    <!--        Send Audio Activity -->
+    <string name="send_audio_title">Send Audio</string>
+    <string name="send_audio_recording">Record in progress</string>
 
     <!--        Activities      -->
     <string name="title_activity_setting">Setting</string>
     <string name="title_activity_about">About</string>
     <string name="title_activity_login">Sign in</string>
     <string name="title_activity_recordphoto">Record Photo</string>
+    <string name="title_activity_recordaudio">Record Audio</string>
 
     <!-- Strings related to login -->
     <string name="prompt_pseudo">Pseudo</string>
     <string name="prompt_email">Email</string>
-    <string name="prompt_compress">Compression rate</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in</string>
     <string name="action_register">Register</string>

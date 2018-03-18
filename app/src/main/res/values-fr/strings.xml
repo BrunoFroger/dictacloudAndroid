@@ -36,7 +36,7 @@
     <string name="not_implemented">Pas encore implémenté</string>
     <string name="title_activity_recordphoto">Enregistrement de photos</string>
     <string name="photo_error_result">Résultat non attendu</string>
-    <string name="prompt_compress">Taux de compression</string>
+    <string name="prompt_compress">Taux de Qualité de l\'image (%)</string>
     <string name="content_setting_button_validation">Validation</string>
     <string name="send_in_progress">Envoi en cours</string>
 </resources>

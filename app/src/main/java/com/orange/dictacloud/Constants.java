@@ -6,9 +6,16 @@ package com.orange.dictacloud;
 
 public class Constants {
 
+
     // ACCESS SERVER VALUES
-    public final static String INTERNAL_SERVER ="http://srvweb/dictacloud/";
-    public final static String EXTERNAL_SERVER ="http://livebox-3840.dtdns.net:8001/dictacloud/";
+    public final static String INTERNAL_SERVER = "srvweb";
+    public final static String EXTERNAL_SERVER = "livebox-3840.dtdns.net:8001";
+    public final static String INTERNAL_PHOTO_SERVER ="http://" + INTERNAL_SERVER + "/dictacloud/";
+    public final static String EXTERNAL_PHOTO_SERVER ="http://" + EXTERNAL_SERVER + "/dictacloud/";
+    public final static String INTERNAL_AUDIO_SERVER ="http://" + INTERNAL_SERVER + "/dictacloud/audioRecord/";
+    public final static String EXTERNAL_AUDIO_SERVER ="http://" + EXTERNAL_SERVER + "/dictacloud/audioRecord/";
+    public final static String INTERNAL_VIDEO_SERVER ="http://" + INTERNAL_SERVER + "/dictacloud/videoRecord/";
+    public final static String EXTERNAL_VIDEO_SERVER ="http://" + EXTERNAL_SERVER + "/dictacloud/videoRecord/";
 
     // MEDIA TYPE VALUES
     public final static String MEDIA_PHOTO = "photo";
@@ -18,7 +25,9 @@ public class Constants {
     // Preferences keys
     public final static String PSEUDO = "Pseudo";
     public final static String EMAIL = "Email";
-    public final static String ACCESS_SERVER = "AccessServer";
+    public final static String ACCESS_PHOTO_SERVER = "AccessPhotoServer";
+    public final static String ACCESS_AUDIO_SERVER = "AccessAudioServer";
+    public final static String ACCESS_VIDEO_SERVER = "AccessVideoServer";
     public final static String MEDIA_TYPE = "MediaType";
     public final static String LOGIN_DATE = "LoginDate";
     public final static String TAUX_COMPRESSION = "CrompressionRate";

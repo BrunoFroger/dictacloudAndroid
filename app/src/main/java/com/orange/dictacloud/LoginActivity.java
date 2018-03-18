@@ -84,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
     private boolean attemptLogin(final String requete, final String pseudo, final String email, final String passwd) {
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String url = preferences.getString(Constants.ACCESS_SERVER, "");
+        String url = preferences.getString(Constants.ACCESS_PHOTO_SERVER, "");
 
         JSONObject jsonParams = new JSONObject();
         try {

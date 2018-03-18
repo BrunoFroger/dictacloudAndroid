@@ -135,14 +135,16 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG, "BFR : Debut d'enregistrement " + mMediaType);
             switch (mMediaType) {
                 case Constants.MEDIA_PHOTO:
-                    Intent settingIntent = new Intent(MainActivity.this, RecordPhoto.class);
-                    startActivity(settingIntent);
+                    Intent PhotoIntent = new Intent(MainActivity.this, RecordPhoto.class);
+                    startActivity(PhotoIntent);
                     break;
                 case Constants.MEDIA_VIDEO:
                     Toast.makeText(this, getString(R.string.not_implemented), Toast.LENGTH_LONG).show();
                     break;
                 case Constants.MEDIA_AUDIO:
                     Toast.makeText(this, getString(R.string.not_implemented), Toast.LENGTH_LONG).show();
+                    //Intent sendAudioIntent = new Intent(MainActivity.this, SendAudio.class);
+                    //startActivity(sendAudioIntent);
                     break;
             }
         }

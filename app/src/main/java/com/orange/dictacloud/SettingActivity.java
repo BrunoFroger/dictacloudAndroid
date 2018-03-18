@@ -29,11 +29,11 @@ public class SettingActivity extends AppCompatActivity {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         mServerView = (TextView) findViewById(R.id.content_setting_server_value);
-        String serverName = preferences.getString(Constants.ACCESS_SERVER, "");
+        String serverName = preferences.getString(Constants.ACCESS_PHOTO_SERVER, "");
         if (!serverName.equals("")) {
             mServerView.setText(serverName);
         } else {
-            mServerView.setText(Constants.EXTERNAL_SERVER);
+            mServerView.setText(Constants.EXTERNAL_PHOTO_SERVER);
         }
 
         mPseudoView = (TextView) findViewById(R.id.content_setting_pseudo_value);
@@ -55,14 +55,14 @@ public class SettingActivity extends AppCompatActivity {
         mCompressView = (EditText) findViewById(R.id.content_setting_compress_value);
         int compressionRate = preferences.getInt(Constants.TAUX_COMPRESSION, 0);
         if (compressionRate != 0) {
-            mCompressView.setText(""+compressionRate);
+            mCompressView.setText("" + compressionRate);
         } else {
             mCompressView.setText("" + Constants.TAUX_COMPRESSION_DEFAULT);
         }
 
-        String accesServer = preferences.getString(Constants.ACCESS_SERVER,"");
+        String accesServer = preferences.getString(Constants.ACCESS_PHOTO_SERVER, "");
         RadioButton activePf;
-        if (accesServer.equals(Constants.INTERNAL_SERVER)) {
+        if (accesServer.equals(Constants.INTERNAL_PHOTO_SERVER)) {
             activePf = (RadioButton) findViewById(R.id.RadioBt_server_internal);
         } else {
             activePf = (RadioButton) findViewById(R.id.RadioBt_server_external);
@@ -81,12 +81,18 @@ public class SettingActivity extends AppCompatActivity {
         // Check which radio button was clicked
         switch (view.getId()) {
             case R.id.RadioBt_server_external:
-                if (checked)
-                    editor.putString(Constants.ACCESS_SERVER, Constants.EXTERNAL_SERVER);
+                if (checked) {
+                    editor.putString(Constants.ACCESS_PHOTO_SERVER, Constants.EXTERNAL_PHOTO_SERVER);
+                    editor.putString(Constants.ACCESS_AUDIO_SERVER, Constants.EXTERNAL_AUDIO_SERVER);
+                    editor.putString(Constants.ACCESS_VIDEO_SERVER, Constants.EXTERNAL_VIDEO_SERVER);
+                }
                 break;
             case R.id.RadioBt_server_internal:
-                if (checked)
-                    editor.putString(Constants.ACCESS_SERVER, Constants.INTERNAL_SERVER);
+                if (checked){
+                    editor.putString(Constants.ACCESS_PHOTO_SERVER, Constants.INTERNAL_PHOTO_SERVER);
+                    editor.putString(Constants.ACCESS_AUDIO_SERVER, Constants.INTERNAL_AUDIO_SERVER);
+                    editor.putString(Constants.ACCESS_VIDEO_SERVER, Constants.INTERNAL_VIDEO_SERVER);
+                }
                 break;
         }
         editor.commit();
@@ -115,9 +121,9 @@ public class SettingActivity extends AppCompatActivity {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         int savedCompressRate = preferences.getInt(Constants.TAUX_COMPRESSION, 0);
         int newCompressRate = Integer.parseInt(mCompressView.getText().toString());
-        if (newCompressRate != savedCompressRate){
+        if (newCompressRate != savedCompressRate) {
             SharedPreferences.Editor editor = preferences.edit();
-            editor.putInt(Constants.TAUX_COMPRESSION,newCompressRate);
+            editor.putInt(Constants.TAUX_COMPRESSION, newCompressRate);
             editor.commit();
         }
         Log.d(TAG, "BFR : update compression rate " + newCompressRate);

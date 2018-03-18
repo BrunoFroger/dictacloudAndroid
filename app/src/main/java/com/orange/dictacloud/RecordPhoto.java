@@ -141,7 +141,7 @@ public class RecordPhoto extends AppCompatActivity {
 
         Toast.makeText(RecordPhoto.this, getString(R.string.send_in_progress), Toast.LENGTH_LONG).show();
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String url = preferences.getString(Constants.ACCESS_SERVER, "");
+        String url = preferences.getString(Constants.ACCESS_PHOTO_SERVER, "");
         //url = url + "?REQUETE=sendPhoto&PSEUDO=" + pseudo + "&FILENAME=" + filename;
         mQueue = Volley.newRequestQueue(this);  // this = context
 
