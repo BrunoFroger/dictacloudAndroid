@@ -19,13 +19,16 @@
 
     <!--        Record Photo Activity       -->
     <string name="welcome_record_photo">Record Photos</string>
+    <string name="welcome_record_photo2">Be carefull this function use data</string>
     <string name="button_take_photo">Take picture</string>
     <string name="photo_recorded">Your photo is recorded on the server</string>
     <string name="photo_error_result">Unexpected result</string>
+    <string name="send_in_progress">Send in progress</string>
 
     <!--        Settings activity   -->
     <string name="content_setting_server_label">Server name</string>
     <string name="content_setting_prompt_server">Name or @IP</string>
+    <string name="content_setting_button_validation">Validation</string>
     <string name="content_setting_button_clear_pref">Clear Preferences</string>
     <string name="preferences_cleared">Preferences cleared</string>
     <string name="external_server">External access</string>

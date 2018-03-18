@@ -17,12 +17,23 @@
         android:text="@string/welcome_record_photo"
         />
 
+    <TextView
+        android:id="@+id/welcome_message2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/welcome_message"
+        android:gravity="center_horizontal"
+        android:text="@string/welcome_record_photo2"
+        />
+
     <Button
         android:id="@+id/button_take_picture"
         style="?android:textAppearanceSmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/welcome_message"
+        android:layout_below="@+id/welcome_message2"
         android:layout_marginTop="25dp"
         android:onClick="recordPhoto"
         android:text="@string/button_take_photo"
@@ -32,7 +43,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/frameCamera"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/button_take_picture"
         android:layout_marginBottom="25dp"
@@ -40,7 +51,7 @@
 
         <FrameLayout
             android:id="@+id/camera_view"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
         </FrameLayout>

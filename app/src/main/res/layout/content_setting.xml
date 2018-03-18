@@ -114,11 +114,21 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/button_validation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/settings_compression"
         android:layout_marginTop="30dp"
-        android:gravity="center_horizontal"
+        android:gravity="center_horizontal|center_vertical"
+        android:onClick="mBtValidationListener"
+        android:text="@string/content_setting_button_validation"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/button_validation"
+        android:layout_marginTop="30dp"
+        android:gravity="center_horizontal|center_vertical"
         android:onClick="mBtClearPreferencesClickListener"
         android:text="@string/content_setting_button_clear_pref"/>
 </RelativeLayout>

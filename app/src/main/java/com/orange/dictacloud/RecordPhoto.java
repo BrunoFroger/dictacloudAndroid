@@ -139,6 +139,7 @@ public class RecordPhoto extends AppCompatActivity {
     private boolean sendPhoto(final byte[] bytesPhoto, final String pseudo, final String filename) {
         // todo envoyer le fichier sur le serveur
 
+        Toast.makeText(RecordPhoto.this, getString(R.string.send_in_progress), Toast.LENGTH_LONG).show();
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         String url = preferences.getString(Constants.ACCESS_SERVER, "");
         //url = url + "?REQUETE=sendPhoto&PSEUDO=" + pseudo + "&FILENAME=" + filename;
@@ -199,52 +200,6 @@ public class RecordPhoto extends AppCompatActivity {
                 param.put("IMAGE",images);
                 return param;
             }
-            /*
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                //Log.d(TAG, "BFR : getParams : " + requete + ":" + pseudo);
-                params.put("REQUETE", "sendPhoto");
-                params.put("PSEUDO", pseudo);
-                params.put("FILENAME", filename);
-                params.put("IMAGE", getStringImage(bytesPhoto));
-
-                Log.d(TAG, "BFR : getParams : " + params.toString());
-                return params;
-            }*/
-
-            /*
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("Content-type", "image/jpeg");
-                //params.put("Content-type", "application/octet-stream");
-                Log.d(TAG, "BFR : getHeader : " + params.toString());
-                return super.getHeaders();
-            }*/
-
-            /*
-                        @Override
-                        public String getBodyContentType() {
-                            return bytesPhoto.toString();
-                            //return super.getBodyContentType();
-                        }
-            */
-
-            /*
-            @Override
-            public byte[] getPostBody() throws AuthFailureError {
-                Log.d(TAG, "BFR : getBody ; taille = " + bytesPhoto.length);
-                return bytesPhoto;
-                //return super.getPostBody();
-            }*/
-            /*
-            @Override
-            public byte[] getBody() throws AuthFailureError {
-                Log.d(TAG, "BFR : getBody ; taille = " + bytesPhoto.length);
-                return bytesPhoto;
-                //return super.getBody();
-            }*/
         };
 
         mQueue.add(postRequest);

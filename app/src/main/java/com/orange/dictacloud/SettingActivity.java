@@ -93,6 +93,10 @@ public class SettingActivity extends AppCompatActivity {
         finish();
     }
 
+    public void mBtValidationListener(View v) {
+        finish();
+    }
+
     public void mBtClearPreferencesClickListener(View v) {
         clearPreferences(SettingActivity.this);
     }

@@ -29,6 +29,7 @@
     <string name="select_media_message">Sélectionnez le type de média que vous souhaitez enregistrer dans le cloud</string>
     <string name="start_record">Débuter l\'enregistrement</string>
     <string name="welcome_record_photo">Enregistrement de photos</string>
+    <string name="welcome_record_photo2">Attention, cette fonction consomme de la data</string>
     <string name="button_take_photo">Prendre la photo</string>
     <string name="photo_recorded">Votre photo est enregistrée sur le serveur</string>
     <string name="register_message">Enregistrez vous avant de faire des enregistrements</string>
@@ -36,4 +37,6 @@
     <string name="title_activity_recordphoto">Enregistrement de photos</string>
     <string name="photo_error_result">Résultat non attendu</string>
     <string name="prompt_compress">Taux de compression</string>
+    <string name="content_setting_button_validation">Validation</string>
+    <string name="send_in_progress">Envoi en cours</string>
 </resources>
