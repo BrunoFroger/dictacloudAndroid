@@ -39,4 +39,17 @@
     <string name="prompt_compress">Taux de Qualité de l\'image (%)</string>
     <string name="content_setting_button_validation">Validation</string>
     <string name="send_in_progress">Envoi en cours</string>
+    <string name="media_select_photo">Photo</string>
+    <string name="media_select_video">Video</string>
+    <string name="media_select_audio">Audio</string>
+    <string name="send_audio_title">Envoi audio</string>
+    <string name="send_audio_recording">Enregistrement en cours</string>
+    <string name="title_activity_recordaudio">Enregistrement audio</string>
+    <string name="prompt_pseudo">Pseudo</string>
+    <string name="popup_error_title">Erreur</string>
+    <string name="popup_error_http_message">Mauvaise requete http : %s</string>
+    <string name="popup_ok">OK</string>
+    <string name="popup_cancel">Annuler</string>
+    <string name="register_ok">Enregistrement OK</string>
+    <string name="register_ko">Enregistrement KO</string>
 </resources>
