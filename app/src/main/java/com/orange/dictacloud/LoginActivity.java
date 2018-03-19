@@ -85,6 +85,7 @@ public class LoginActivity extends AppCompatActivity {
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         String url = preferences.getString(Constants.ACCESS_PHOTO_SERVER, "");
+        Log.d(TAG, "BFR : Url de connexion Photo : " + url);
 
         JSONObject jsonParams = new JSONObject();
         try {
@@ -123,10 +124,10 @@ public class LoginActivity extends AppCompatActivity {
                         // sauvegarde des valeurs saisies dans les preferences
                         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(LoginActivity.this);
                         SharedPreferences.Editor editor = preferences.edit();
-                        Log.d(TAG, "BFR attemptLogin : mPseudo stocké dans les preferences : " + mPseudo);
+                        //Log.d(TAG, "BFR attemptLogin : mPseudo stocké dans les preferences : " + mPseudo);
                         editor.putString(Constants.PSEUDO, mPseudo);
                         editor.commit();
-                        Log.d(TAG, "BFR attemptLogin : mEmail stocké dans les preferences : " + mEmail);
+                        //Log.d(TAG, "BFR attemptLogin : mEmail stocké dans les preferences : " + mEmail);
                         editor.putString(Constants.EMAIL, mEmail);
                         editor.commit();
                         Toast.makeText(LoginActivity.this, getString(R.string.register_ok), Toast.LENGTH_LONG).show();

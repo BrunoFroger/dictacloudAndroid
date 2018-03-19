@@ -47,7 +47,7 @@
             android:label="@string/title_activity_recordphoto">
         </activity>
         <activity
-            android:name=".streamAudio.SendAudio"
+            android:name=".SendAudio"
             android:label="@string/title_activity_recordaudio">
         </activity>
     </application>

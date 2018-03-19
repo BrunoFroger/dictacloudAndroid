@@ -1,4 +1,4 @@
-package com.orange.dictacloud.streamAudio;
+package com.orange.dictacloud;
 
 /**
  * Created by obfe6300 on 18/03/2018.
@@ -16,9 +16,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
-
-import com.orange.dictacloud.Constants;
-import com.orange.dictacloud.R;
 
 import java.io.IOException;
 import java.net.DatagramPacket;

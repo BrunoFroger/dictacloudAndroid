@@ -23,6 +23,7 @@ public class Constants {
     public final static String MEDIA_AUDIO = "audio";
 
     // Preferences keys
+    public final static String INITIALIZED = "Initialized";
     public final static String PSEUDO = "Pseudo";
     public final static String EMAIL = "Email";
     public final static String ACCESS_PHOTO_SERVER = "AccessPhotoServer";

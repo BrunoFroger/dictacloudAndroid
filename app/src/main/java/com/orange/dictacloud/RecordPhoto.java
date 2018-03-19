@@ -46,6 +46,7 @@ public class RecordPhoto extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_record_photo);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         //btn to close the application
         ImageButton imgClose = (ImageButton) findViewById(R.id.imgClose);
@@ -191,13 +192,13 @@ public class RecordPhoto extends AppCompatActivity {
 
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> param = new HashMap<>();
+                Map<String, String> param = new HashMap<>();
 
                 String images = getStringImage(bytesPhoto);
-                param.put("REQUETE","sendPhoto");
-                param.put("PSEUDO",pseudo);
-                param.put("FILENAME",filename);
-                param.put("IMAGE",images);
+                param.put("REQUETE", "sendPhoto");
+                param.put("PSEUDO", pseudo);
+                param.put("FILENAME", filename);
+                param.put("IMAGE", images);
                 return param;
             }
         };

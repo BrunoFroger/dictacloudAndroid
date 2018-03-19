@@ -33,8 +33,21 @@ public class MainActivity extends AppCompatActivity {
         }
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = preferences.edit();
+        if (preferences.getString(Constants.INITIALIZED,"").equals("")){
+            // le préférences ne sont pas initialisées, on les initialise aux valeurs par defaut
+            editor.putString(Constants.ACCESS_PHOTO_SERVER,Constants.EXTERNAL_PHOTO_SERVER);
+            editor.putString(Constants.ACCESS_AUDIO_SERVER,Constants.EXTERNAL_AUDIO_SERVER);
+            editor.putString(Constants.ACCESS_VIDEO_SERVER,Constants.EXTERNAL_VIDEO_SERVER);
+            editor.putInt(Constants.TAUX_COMPRESSION,Constants.TAUX_COMPRESSION_DEFAULT);
+            mMediaType = Constants.MEDIA_PHOTO;
+            editor.putString(Constants.INITIALIZED,"Initialized");
+            editor.commit();
+        }
+
+        // positionne le media type recupere dans les preferences
         mMediaType = preferences.getString(Constants.MEDIA_TYPE,"");
         RadioButton mediaSelected;
         if (mMediaType.equals(Constants.MEDIA_AUDIO)) {
@@ -49,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
         int compressRate = preferences.getInt(Constants.TAUX_COMPRESSION, 0);
         if (compressRate == 0){
             compressRate = Constants.TAUX_COMPRESSION_DEFAULT;
-            SharedPreferences.Editor editor = preferences.edit();
             editor.putInt(Constants.TAUX_COMPRESSION, compressRate);
         }
     }
@@ -110,8 +122,9 @@ public class MainActivity extends AppCompatActivity {
         // Check which radio button was clicked
         switch (view.getId()) {
             case R.id.RadioBt_select_input_photo:
-                if (checked)
+                if (checked){
                     editor.putString(Constants.MEDIA_TYPE, Constants.MEDIA_PHOTO);
+                }
                 break;
             case R.id.RadioBt_select_input_video:
                 if (checked)
