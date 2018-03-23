@@ -6,7 +6,7 @@
     <string name="title_activity_setting">Préférences</string>
     <string name="title_activity_about">A propos</string>
     <string name="prompt_email">Email</string>
-    <string name="action_sign_in">S\'insrire</string>
+    <string name="action_sign_in">S\'inscrire</string>
     <string name="action_sign_in_short">s\'inscrire</string>
     <string name="error_invalid_email">Cette adresse mail est invalide</string>
     <string name="error_incorrect_password">Ce mot de passe est incorrect</string>
@@ -14,7 +14,7 @@
     <string name="permission_rationale">L\'accès aux contacts est nécessaire pour la complétion de l\'adresse amil</string>
     <string name="title_activity_login">S\'inscrire</string>
     <string name="prompt_password">Mot de passe</string>
-    <string name="action_login">Login</string>
+    <string name="action_login">Mon compte</string>
     <string name="welcome_message">Bienvenue %s sur Dictacloud</string>
     <string name="presentation_message">Cette application vous permet d\'enregistrer en temps réel vos video audio et photo dans le cloud.</string>
     <string name="action_register">S\'enregistrer</string>
@@ -52,4 +52,7 @@
     <string name="popup_cancel">Annuler</string>
     <string name="register_ok">Enregistrement OK</string>
     <string name="register_ko">Enregistrement KO</string>
+    <string name="action_sign_out">Se désinscrire</string>
+    <string name="traitement_stockage">Stockage local</string>
+    <string name="traitement_mail">Envoi par mail</string>
 </resources>

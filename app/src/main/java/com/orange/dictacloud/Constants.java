@@ -8,6 +8,8 @@ public class Constants {
 
 
     // ACCESS SERVER VALUES
+    public final static String ACCESS_TYPE_INTERNAL = "Internal";
+    public final static String ACCESS_TYPE_EXTERNAL = "External";
     public final static String INTERNAL_SERVER = "srvweb";
     public final static String EXTERNAL_SERVER = "livebox-3840.dtdns.net:8001";
     public final static String INTERNAL_PHOTO_SERVER ="http://" + INTERNAL_SERVER + "/dictacloud/";
@@ -17,6 +19,10 @@ public class Constants {
     public final static String INTERNAL_VIDEO_SERVER ="http://" + INTERNAL_SERVER + "/dictacloud/videoRecord/";
     public final static String EXTERNAL_VIDEO_SERVER ="http://" + EXTERNAL_SERVER + "/dictacloud/videoRecord/";
 
+    // TREATMENT TYPE
+    public final static String TREATMENT_MAIL = "treatmentMail";
+    public final static String TREATMENT_STORE = "treatmentStore";
+
     // MEDIA TYPE VALUES
     public final static String MEDIA_PHOTO = "photo";
     public final static String MEDIA_VIDEO = "video";
@@ -24,6 +30,7 @@ public class Constants {
 
     // Preferences keys
     public final static String INITIALIZED = "Initialized";
+    public final static String ACCESS_TYPE = "accesType";
     public final static String PSEUDO = "Pseudo";
     public final static String EMAIL = "Email";
     public final static String ACCESS_PHOTO_SERVER = "AccessPhotoServer";

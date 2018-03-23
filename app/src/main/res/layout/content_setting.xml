@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.orange.dictacloud.SettingActivity"
+    tools:context="com.orange.dictacloud.SettingDictacloudActivity"
     tools:showIn="@layout/activity_setting">
 
     <LinearLayout
@@ -113,6 +113,30 @@
             android:inputType="numberDecimal"/>
     </LinearLayout>
 
+    <!--RadioGroup
+        android:id="@+id/Radiobt_traitement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/settings_compression"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/RadioBt_traitement_mail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="64dp"
+            android:onClick="onRadioButtontraitementClicked"
+            android:text="@string/traitement_mail"/>
+
+        <RadioButton
+            android:id="@+id/RadioBt_traitement_stockage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="64dp"
+            android:onClick="onRadioButtontraitementClicked"
+            android:text="@string/traitement_stockage"/>
+    </RadioGroup-->
     <Button
         android:id="@+id/button_validation"
         android:layout_width="match_parent"

@@ -28,7 +28,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SettingActivity"
+            android:name=".SettingDictacloudActivity"
             android:label="@string/title_activity_setting"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>

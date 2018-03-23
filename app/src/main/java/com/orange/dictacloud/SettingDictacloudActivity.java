@@ -13,7 +13,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class SettingActivity extends AppCompatActivity {
+public class SettingDictacloudActivity extends AppCompatActivity {
 
     private final String TAG = getClass().getSimpleName();
     private TextView mServerView;
@@ -98,13 +98,15 @@ public class SettingActivity extends AppCompatActivity {
         editor.commit();
         finish();
     }
+    public void onRadioButtontraitementClicked(View view) {
+    }
 
     public void mBtValidationListener(View v) {
         finish();
     }
 
     public void mBtClearPreferencesClickListener(View v) {
-        clearPreferences(SettingActivity.this);
+        clearPreferences(SettingDictacloudActivity.this);
     }
 
     public void clearPreferences(Context ctx) {

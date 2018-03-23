@@ -45,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText mPseudoView1;
     private EditText mPasswordView1;
     private JSONObject mJsonResponse;
+    private SharedPreferences mPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +58,17 @@ public class LoginActivity extends AppCompatActivity {
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView1 = (EditText) findViewById(R.id.password1);
 
+        mPreferences = PreferenceManager.getDefaultSharedPreferences(LoginActivity.this);
+        // recuperation des infos des préférences si disponibles pour affichage dans les champs
+        String tmp = mPreferences.getString(Constants.PSEUDO,"");
+        if (!tmp.equals("")){
+            mPseudoView.setText(tmp);
+            mPseudoView1.setText(tmp);
+        }
+        tmp = mPreferences.getString(Constants.EMAIL,"");
+        if (!tmp.equals("")){
+            mEmailView.setText(tmp);
+        }
         Button mSignInButton = (Button) findViewById(R.id.sign_in_button);
         mSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +77,17 @@ public class LoginActivity extends AppCompatActivity {
                 String email = mEmailView.getText().toString();
                 String passwd = mPasswordView.getText().toString();
                 attemptLogin(Constants.SUBSCRIBE, pseudo, email, passwd);
+            }
+        });
+
+        Button mSignOutButton = (Button) findViewById(R.id.sign_out_button);
+        mSignOutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String pseudo = mPseudoView.getText().toString();
+                String email = mEmailView.getText().toString();
+                String passwd = mPasswordView.getText().toString();
+                attemptLogin(Constants.UNSUBSCRIBE, pseudo, email, passwd);
             }
         });
 
@@ -81,10 +104,10 @@ public class LoginActivity extends AppCompatActivity {
         mQueue = Volley.newRequestQueue(this);  // this = context
     }
 
+
     private boolean attemptLogin(final String requete, final String pseudo, final String email, final String passwd) {
 
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String url = preferences.getString(Constants.ACCESS_PHOTO_SERVER, "");
+        String url = mPreferences.getString(Constants.ACCESS_PHOTO_SERVER, "");
         Log.d(TAG, "BFR : Url de connexion Photo : " + url);
 
         JSONObject jsonParams = new JSONObject();
@@ -121,9 +144,15 @@ public class LoginActivity extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+                        if (!mResult.equals("OK")){
+                            Toast.makeText(LoginActivity.this, mResult, Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                        if (mRequete.equals(Constants.UNSUBSCRIBE)){
+                            // TODO effacer les préférences
+                        }
                         // sauvegarde des valeurs saisies dans les preferences
-                        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(LoginActivity.this);
-                        SharedPreferences.Editor editor = preferences.edit();
+                        SharedPreferences.Editor editor = mPreferences.edit();
                         //Log.d(TAG, "BFR attemptLogin : mPseudo stocké dans les preferences : " + mPseudo);
                         editor.putString(Constants.PSEUDO, mPseudo);
                         editor.commit();
@@ -136,37 +165,6 @@ public class LoginActivity extends AppCompatActivity {
                         finish();
                     }
                 },
-
-                    /*
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        // response
-                        /*
-                        String[] pieces = response.split(":");
-                        Log.d(TAG, "BFR : Response du serveur : <" + response + "> nb champs = " + pieces.length);
-                        // en retour on a les donnees suivantes :
-                        // <requete>:[OK:KO]:pseudo:email:passwd
-                        mRequete = pieces[0];
-                        mResult = pieces[1];
-                        mPseudo = pieces[2];
-                        mEmail = pieces[3];
-                        if (pieces.length > 4){
-                            mPassword = pieces[4];
-                        }
-
-                        if (mResult.equals("OK")) {
-                            Log.d(TAG, "BFR : requete OK [" + mRequete + "] = " + mResult);
-                            statusResponse = true;
-
-                            finish();
-                        } else {
-                            //TODO affficher une popup avec le message d'erreur
-                            Log.d(TAG, "BFR : requete KO [" + mRequete + "] = " + mResult);
-                            Toast.makeText(LoginActivity.this, String.format(getString(R.string.register_ko),mResult), Toast.LENGTH_LONG).show();
-                            statusResponse = false;
-                        }*/
-                //}*/
-                //},
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
@@ -176,60 +174,6 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 }
         ) {
-
-            /*
-            @Override
-            public byte[] getBody() {
-                Map<String, String> jsonParams = new HashMap<>();
-                //Log.d(TAG, "BFR : getBody : parametres : " + requete + ":" + pseudo + ":" + email + ":" + passwd);
-                jsonParams.put("REQUETE", requete);
-                jsonParams.put("PSEUDO", pseudo);
-                if (requete.equals(Constants.SUBSCRIBE)) {
-                    jsonParams.put("EMAIL", email);
-                }
-                jsonParams.put("PASSWD", passwd);
-                String params = new Gson().toJson(jsonParams);
-                Log.d(TAG, "BFR : getBody : json :" + params);
-                return params.getBytes();
-            }*/
-
-            /*
-            @Override
-            public String getBodyContentType() {
-                return super.getBodyContentType();
-            }*/
-
-            /*
-            @Override
-            public byte[] getPostBody() throws AuthFailureError {
-                Map<String, String> jsonParams = new HashMap<>();
-                //Log.d(TAG, "BFR : getBody : parametres : " + requete + ":" + pseudo + ":" + email + ":" + passwd);
-                jsonParams.put("REQUETE", requete);
-                jsonParams.put("PSEUDO", pseudo);
-                if (requete.equals(Constants.SUBSCRIBE)) {
-                    jsonParams.put("EMAIL", email);
-                }
-                jsonParams.put("PASSWD", passwd);
-                String params = new Gson().toJson(jsonParams);
-                Log.d(TAG, "BFR : getBody : json :" + params);
-                return params.getBytes();
-            }*/
-
-            /*
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> jsonParams = new HashMap<>();
-                //Log.d(TAG, "BFR : getParams : parametres : " + requete + ":" + pseudo + ":" + email + ":" + passwd);
-                jsonParams.put("REQUETE", requete);
-                jsonParams.put("PSEUDO", pseudo);
-                if (requete.equals(Constants.SUBSCRIBE)) {
-                    jsonParams.put("EMAIL", email);
-                }
-                jsonParams.put("PASSWD", passwd);
-                String params = new Gson().toJson(jsonParams);
-                Log.d(TAG, "BFR : getParams : json :" + jsonParams);
-                return jsonParams;
-            }*/
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
@@ -245,6 +189,7 @@ public class LoginActivity extends AppCompatActivity {
 
         Log.d(TAG, "BFR : Send request mQueue.add : " + url);
 
+        // TODO voir si on peut retirer cette temporisation
         try {
             Thread.sleep(500);
         } catch (InterruptedException e) {
@@ -256,10 +201,6 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-
-
-
-
         super.onDestroy();
     }
 }

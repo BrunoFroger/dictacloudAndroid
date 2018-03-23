@@ -34,36 +34,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = preferences.edit();
-        if (preferences.getString(Constants.INITIALIZED,"").equals("")){
-            // le préférences ne sont pas initialisées, on les initialise aux valeurs par defaut
-            editor.putString(Constants.ACCESS_PHOTO_SERVER,Constants.EXTERNAL_PHOTO_SERVER);
-            editor.putString(Constants.ACCESS_AUDIO_SERVER,Constants.EXTERNAL_AUDIO_SERVER);
-            editor.putString(Constants.ACCESS_VIDEO_SERVER,Constants.EXTERNAL_VIDEO_SERVER);
-            editor.putInt(Constants.TAUX_COMPRESSION,Constants.TAUX_COMPRESSION_DEFAULT);
-            mMediaType = Constants.MEDIA_PHOTO;
-            editor.putString(Constants.INITIALIZED,"Initialized");
-            editor.commit();
-        }
-
-        // positionne le media type recupere dans les preferences
-        mMediaType = preferences.getString(Constants.MEDIA_TYPE,"");
-        RadioButton mediaSelected;
-        if (mMediaType.equals(Constants.MEDIA_AUDIO)) {
-            mediaSelected = (RadioButton) findViewById(R.id.RadioBt_select_input_audio);
-        } else if (mMediaType.equals(Constants.MEDIA_VIDEO)) {
-            mediaSelected = (RadioButton) findViewById(R.id.RadioBt_select_input_video);
-        } else {
-            mediaSelected = (RadioButton) findViewById(R.id.RadioBt_select_input_photo);
-            mMediaType = Constants.MEDIA_PHOTO;
-        }
-        mediaSelected.toggle();
-        int compressRate = preferences.getInt(Constants.TAUX_COMPRESSION, 0);
-        if (compressRate == 0){
-            compressRate = Constants.TAUX_COMPRESSION_DEFAULT;
-            editor.putInt(Constants.TAUX_COMPRESSION, compressRate);
-        }
+        initPreferences();
     }
 
     @Override
@@ -92,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Intent settingIntent = new Intent(MainActivity.this, SettingActivity.class);
+            Intent settingIntent = new Intent(MainActivity.this, SettingDictacloudActivity.class);
             startActivity(settingIntent);
             return true;
         }
@@ -124,15 +95,32 @@ public class MainActivity extends AppCompatActivity {
             case R.id.RadioBt_select_input_photo:
                 if (checked){
                     editor.putString(Constants.MEDIA_TYPE, Constants.MEDIA_PHOTO);
+                    if (preferences.getString(Constants.ACCESS_TYPE,"").equals(Constants.ACCESS_TYPE_EXTERNAL)){
+                        editor.putString(Constants.ACCESS_PHOTO_SERVER,Constants.EXTERNAL_PHOTO_SERVER);
+                    }else{
+                        editor.putString(Constants.ACCESS_PHOTO_SERVER,Constants.INTERNAL_PHOTO_SERVER);
+                    }
                 }
                 break;
             case R.id.RadioBt_select_input_video:
-                if (checked)
+                if (checked){
                     editor.putString(Constants.MEDIA_TYPE, Constants.MEDIA_VIDEO);
+                    if (preferences.getString(Constants.ACCESS_TYPE,"").equals(Constants.ACCESS_TYPE_EXTERNAL)){
+                        editor.putString(Constants.ACCESS_VIDEO_SERVER,Constants.EXTERNAL_VIDEO_SERVER);
+                    }else{
+                        editor.putString(Constants.ACCESS_VIDEO_SERVER,Constants.INTERNAL_VIDEO_SERVER);
+                    }
+                }
                 break;
             case R.id.RadioBt_select_input_audio:
-                if (checked)
+                if (checked){
                     editor.putString(Constants.MEDIA_TYPE, Constants.MEDIA_AUDIO);
+                    if (preferences.getString(Constants.ACCESS_TYPE,"").equals(Constants.ACCESS_TYPE_EXTERNAL)){
+                        editor.putString(Constants.ACCESS_AUDIO_SERVER,Constants.EXTERNAL_AUDIO_SERVER);
+                    }else{
+                        editor.putString(Constants.ACCESS_AUDIO_SERVER,Constants.INTERNAL_AUDIO_SERVER);
+                    }
+                }
                 break;
         }
         editor.commit();
@@ -160,6 +148,41 @@ public class MainActivity extends AppCompatActivity {
                     //startActivity(sendAudioIntent);
                     break;
             }
+        }
+    }
+
+    void initPreferences(){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = preferences.edit();
+        if (preferences.getString(Constants.INITIALIZED,"").equals("")){
+            // le préférences ne sont pas initialisées, on les initialise aux valeurs par defaut
+            editor.putString(Constants.ACCESS_TYPE,Constants.ACCESS_TYPE_EXTERNAL);
+            editor.putString(Constants.ACCESS_PHOTO_SERVER,Constants.EXTERNAL_PHOTO_SERVER);
+            editor.putString(Constants.ACCESS_AUDIO_SERVER,Constants.EXTERNAL_AUDIO_SERVER);
+            editor.putString(Constants.ACCESS_VIDEO_SERVER,Constants.EXTERNAL_VIDEO_SERVER);
+            editor.putInt(Constants.TAUX_COMPRESSION,Constants.TAUX_COMPRESSION_DEFAULT);
+            mMediaType = Constants.MEDIA_PHOTO;
+            editor.putString(Constants.INITIALIZED,"Initialized");
+            editor.commit();
+        }
+
+        // positionne le media type recupere dans les preferences
+        mMediaType = preferences.getString(Constants.MEDIA_TYPE,"");
+        RadioButton mediaSelected;
+        if (mMediaType.equals(Constants.MEDIA_AUDIO)) {
+            mediaSelected = (RadioButton) findViewById(R.id.RadioBt_select_input_audio);
+        } else if (mMediaType.equals(Constants.MEDIA_VIDEO)) {
+            mediaSelected = (RadioButton) findViewById(R.id.RadioBt_select_input_video);
+        } else {
+            mediaSelected = (RadioButton) findViewById(R.id.RadioBt_select_input_photo);
+            mMediaType = Constants.MEDIA_PHOTO;
+        }
+
+        mediaSelected.toggle();
+        int compressRate = preferences.getInt(Constants.TAUX_COMPRESSION, 0);
+        if (compressRate == 0){
+            compressRate = Constants.TAUX_COMPRESSION_DEFAULT;
+            editor.putInt(Constants.TAUX_COMPRESSION, compressRate);
         }
     }
 
