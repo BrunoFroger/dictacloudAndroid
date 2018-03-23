@@ -55,4 +55,5 @@
     <string name="action_sign_out">Se désinscrire</string>
     <string name="traitement_stockage">Stockage local</string>
     <string name="traitement_mail">Envoi par mail</string>
+    <string name="unsubscribe_ok">Désenregistrement OK</string>
 </resources>

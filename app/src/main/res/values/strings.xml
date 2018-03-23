@@ -69,6 +69,7 @@
     <string name="popup_cancel">Cancel</string>
     <string name="register_message">Register before recording</string>
     <string name="register_ok">Register OK</string>
+    <string name="unsubscribe_ok">Unsubscribe OK</string>
     <string name="register_ko">Register KO : %s</string>
     <string name="internal_server">Internal Access</string>
 

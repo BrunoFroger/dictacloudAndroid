@@ -104,7 +104,6 @@ public class LoginActivity extends AppCompatActivity {
         mQueue = Volley.newRequestQueue(this);  // this = context
     }
 
-
     private boolean attemptLogin(final String requete, final String pseudo, final String email, final String passwd) {
 
         String url = mPreferences.getString(Constants.ACCESS_PHOTO_SERVER, "");
@@ -148,18 +147,19 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(LoginActivity.this, mResult, Toast.LENGTH_LONG).show();
                             return;
                         }
+                        SharedPreferences.Editor editor = mPreferences.edit();
                         if (mRequete.equals(Constants.UNSUBSCRIBE)){
                             // TODO effacer les préférences
+                            editor.putString(Constants.PSEUDO, "");
+                            editor.putString(Constants.EMAIL, "");
+                            Toast.makeText(LoginActivity.this, getString(R.string.unsubscribe_ok), Toast.LENGTH_LONG).show();
+                        } else {
+                            // sauvegarde des valeurs saisies dans les preferences
+                            editor.putString(Constants.PSEUDO, mPseudo);
+                            editor.putString(Constants.EMAIL, mEmail);
+                            Toast.makeText(LoginActivity.this, getString(R.string.register_ok), Toast.LENGTH_LONG).show();
                         }
-                        // sauvegarde des valeurs saisies dans les preferences
-                        SharedPreferences.Editor editor = mPreferences.edit();
-                        //Log.d(TAG, "BFR attemptLogin : mPseudo stocké dans les preferences : " + mPseudo);
-                        editor.putString(Constants.PSEUDO, mPseudo);
                         editor.commit();
-                        //Log.d(TAG, "BFR attemptLogin : mEmail stocké dans les preferences : " + mEmail);
-                        editor.putString(Constants.EMAIL, mEmail);
-                        editor.commit();
-                        Toast.makeText(LoginActivity.this, getString(R.string.register_ok), Toast.LENGTH_LONG).show();
 
                         statusResponse = true;
                         finish();
