@@ -1,6 +1,7 @@
 package com.orange.dictacloud;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -41,6 +42,7 @@ public class RecordPhoto extends AppCompatActivity {
     private RequestQueue mQueue;
     public boolean statusResponse;
     private String mMessage;
+    private String mTreatment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +50,8 @@ public class RecordPhoto extends AppCompatActivity {
         setContentView(R.layout.activity_record_photo);
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
+        Intent intent = getIntent();
+        mTreatment = intent.getStringExtra(Constants.TREATMENT_TYPE);
         //btn to close the application
         ImageButton imgClose = (ImageButton) findViewById(R.id.imgClose);
         imgClose.setOnClickListener(new View.OnClickListener() {
@@ -198,6 +202,8 @@ public class RecordPhoto extends AppCompatActivity {
                 param.put("REQUETE", "sendPhoto");
                 param.put("PSEUDO", pseudo);
                 param.put("FILENAME", filename);
+                param.put("TREATMENT",mTreatment);
+                Log.d(TAG, "BFR : getParams : " + param.toString());
                 param.put("IMAGE", images);
                 return param;
             }

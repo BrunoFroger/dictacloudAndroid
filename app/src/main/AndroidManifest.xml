@@ -50,6 +50,11 @@
             android:name=".SendAudio"
             android:label="@string/title_activity_recordaudio">
         </activity>
+        <activity
+            android:name=".FilesActivity"
+            android:label="@string/title_activity_files"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

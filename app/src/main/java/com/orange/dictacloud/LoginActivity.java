@@ -101,6 +101,17 @@ public class LoginActivity extends AppCompatActivity {
                 attemptLogin(Constants.REGISTER, pseudo, email, passwd);
             }
         });
+
+        Button mUnregisterButton = (Button) findViewById(R.id.unregister_button);
+        mUnregisterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String pseudo = mPseudoView1.getText().toString();
+                String email = mEmailView.getText().toString();
+                String passwd = mPasswordView1.getText().toString();
+                attemptLogin(Constants.UNREGISTER, pseudo, email, passwd);
+            }
+        });
         mQueue = Volley.newRequestQueue(this);  // this = context
     }
 
@@ -148,16 +159,26 @@ public class LoginActivity extends AppCompatActivity {
                             return;
                         }
                         SharedPreferences.Editor editor = mPreferences.edit();
-                        if (mRequete.equals(Constants.UNSUBSCRIBE)){
-                            // TODO effacer les préférences
-                            editor.putString(Constants.PSEUDO, "");
-                            editor.putString(Constants.EMAIL, "");
-                            Toast.makeText(LoginActivity.this, getString(R.string.unsubscribe_ok), Toast.LENGTH_LONG).show();
-                        } else {
-                            // sauvegarde des valeurs saisies dans les preferences
-                            editor.putString(Constants.PSEUDO, mPseudo);
-                            editor.putString(Constants.EMAIL, mEmail);
-                            Toast.makeText(LoginActivity.this, getString(R.string.register_ok), Toast.LENGTH_LONG).show();
+                        switch (mRequete){
+                            case Constants.UNSUBSCRIBE:
+                                editor.putString(Constants.PSEUDO, "");
+                                editor.putString(Constants.EMAIL, "");
+                                Toast.makeText(LoginActivity.this, getString(R.string.unsubscribe_ok), Toast.LENGTH_LONG).show();
+                                break;
+                            case Constants.UNREGISTER:
+                                editor.putString(Constants.PSEUDO, "");
+                                editor.putString(Constants.EMAIL, "");
+                                Toast.makeText(LoginActivity.this, getString(R.string.unregister_ok), Toast.LENGTH_LONG).show();
+                                break;
+                            case Constants.REGISTER:
+                            case Constants.SUBSCRIBE:
+                                editor.putString(Constants.PSEUDO, mPseudo);
+                                editor.putString(Constants.EMAIL, mEmail);
+                                Toast.makeText(LoginActivity.this, getString(R.string.register_ok), Toast.LENGTH_LONG).show();
+                                break;
+                            default:
+                                Toast.makeText(LoginActivity.this, mRequete + " OK", Toast.LENGTH_LONG).show();
+                                break;
                         }
                         editor.commit();
 
@@ -169,6 +190,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // todo afficher popup d'erreur
+                        Toast.makeText(LoginActivity.this, error.toString(), Toast.LENGTH_LONG).show();
                         statusResponse = false;
                         Log.d(TAG, "BFR : Error.Response : <" + error.toString() + ">");
                     }

@@ -26,14 +26,14 @@
     <string name="preferences_cleared">les préférences sont effacées</string>
     <string name="external_server">Accès externe</string>
     <string name="internal_server">Accès interne</string>
-    <string name="select_media_message">Sélectionnez le type de média que vous souhaitez enregistrer dans le cloud</string>
+    <string name="select_media_message">Sélectionnez le type de média et le traitement que vous souhaitez utiliser</string>
     <string name="start_record">Débuter l\'enregistrement</string>
     <string name="welcome_record_photo">Enregistrement de photos</string>
     <string name="welcome_record_photo2">Attention, cette fonction consomme de la data</string>
     <string name="button_take_photo">Prendre la photo</string>
     <string name="photo_recorded">Votre photo est enregistrée sur le serveur</string>
     <string name="register_message">Enregistrez vous avant de faire des enregistrements</string>
-    <string name="not_implemented">Pas encore implémenté</string>
+    <string name="not_implemented_media">Ce type de média n\'est pas encore implémenté</string>
     <string name="title_activity_recordphoto">Enregistrement de photos</string>
     <string name="photo_error_result">Résultat non attendu</string>
     <string name="prompt_compress">Taux de Qualité de l\'image (%)</string>
@@ -41,7 +41,6 @@
     <string name="send_in_progress">Envoi en cours</string>
     <string name="media_select_photo">Photo</string>
     <string name="media_select_video">Video</string>
-    <string name="media_select_audio">Audio</string>
     <string name="send_audio_title">Envoi audio</string>
     <string name="send_audio_recording">Enregistrement en cours</string>
     <string name="title_activity_recordaudio">Enregistrement audio</string>
@@ -56,4 +55,14 @@
     <string name="traitement_stockage">Stockage local</string>
     <string name="traitement_mail">Envoi par mail</string>
     <string name="unsubscribe_ok">Désenregistrement OK</string>
+    <string name="select_traitement_mail">Envoi par mail</string>
+    <string name="select_traitement_stockage">Stockage sur serveur</string>
+    <string name="select_traitement_cloud">Stockage dans le cloud</string>
+    <string name="not_implemented_treatment">Ce traitement n\'est pas encore implémenté</string>
+    <string name="unregister_ok">Désenregistrement OK</string>
+    <string name="action_unregister">Désenregistrement</string>
+    <string name="welcome_message_suite">Enregistrez vous SVP</string>
+    <string name="media_select_audio">Audio</string>
+    <string name="action_files">Mes fichiers</string>
+    <string name="title_activity_files">Mes fichiers</string>
 </resources>

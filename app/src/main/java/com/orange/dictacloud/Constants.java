@@ -22,6 +22,7 @@ public class Constants {
     // TREATMENT TYPE
     public final static String TREATMENT_MAIL = "treatmentMail";
     public final static String TREATMENT_STORE = "treatmentStore";
+    public final static String TREATMENT_CLOUD = "treatmentCloud";
 
     // MEDIA TYPE VALUES
     public final static String MEDIA_PHOTO = "photo";
@@ -31,6 +32,7 @@ public class Constants {
     // Preferences keys
     public final static String INITIALIZED = "Initialized";
     public final static String ACCESS_TYPE = "accesType";
+    public final static String TREATMENT_TYPE = "treatmentType";
     public final static String PSEUDO = "Pseudo";
     public final static String EMAIL = "Email";
     public final static String ACCESS_PHOTO_SERVER = "AccessPhotoServer";

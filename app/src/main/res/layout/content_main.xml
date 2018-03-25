@@ -21,11 +21,21 @@
         android:text="@string/welcome_message"
         />
 
+    <TextView
+        android:id="@+id/welcome_message_suite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/welcome_message"
+        android:layout_marginLeft="10dp"
+        android:gravity="center_horizontal"
+        android:text="@string/welcome_message_suite"
+        />
+
     <ImageView
         android:id="@+id/application_icon"
         android:layout_width="match_parent"
         android:layout_height="96dp"
-        android:layout_below="@+id/welcome_message"
+        android:layout_below="@+id/welcome_message_suite"
         android:layout_marginTop="16dp"
         android:gravity="center_horizontal"
         android:src="@mipmap/dictacloud"
@@ -67,7 +77,7 @@
                 android:id="@+id/RadioBt_select_input_photo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="64dp"
+                android:layout_marginLeft="30dp"
                 android:onClick="onRadioButtonClicked"
                 android:text="@string/media_select_photo"/>
 
@@ -75,7 +85,7 @@
                 android:id="@+id/RadioBt_select_input_video"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="64dp"
+                android:layout_marginLeft="30dp"
                 android:onClick="onRadioButtonClicked"
                 android:text="@string/media_select_video"/>
 
@@ -83,9 +93,41 @@
                 android:id="@+id/RadioBt_select_input_audio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="64dp"
+                android:layout_marginLeft="30dp"
                 android:onClick="onRadioButtonClicked"
                 android:text="@string/media_select_audio"/>
+
+        </RadioGroup>
+        <RadioGroup
+            android:id="@+id/Radiobt_select_traitement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/RadioBt_select_traitement_mail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="80dp"
+                android:onClick="onRadioButton2Clicked"
+                android:text="@string/select_traitement_mail"/>
+
+            <RadioButton
+                android:id="@+id/RadioBt_select_traitement_stockage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="80dp"
+                android:onClick="onRadioButton2Clicked"
+                android:text="@string/select_traitement_stockage"/>
+
+            <RadioButton
+                android:id="@+id/RadioBt_select_traitement_cloud"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="80dp"
+                android:onClick="onRadioButton2Clicked"
+                android:text="@string/select_traitement_cloud"/>
 
         </RadioGroup>
     </LinearLayout>
