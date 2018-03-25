@@ -50,5 +50,6 @@ public class Constants {
     public final static String UNSUBSCRIBE="unsubsribe";
     public final static String REGISTER="register";
     public final static String UNREGISTER="unregister";
+    public final static String LISTE="liste";
 
 }

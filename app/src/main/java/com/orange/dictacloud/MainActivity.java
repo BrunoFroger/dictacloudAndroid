@@ -87,8 +87,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (id == R.id.action_files) {
-            Intent loginIntent = new Intent(MainActivity.this, FilesActivity.class);
-            startActivity(loginIntent);
+            Intent fileIntent = new Intent(MainActivity.this, FilesActivity.class);
+            fileIntent.putExtra(Constants.PSEUDO, mUserName);
+            startActivity(fileIntent);
             return true;
         }
 
