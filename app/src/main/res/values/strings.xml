@@ -70,6 +70,9 @@
     <string name="error_field_required">This field is required</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
 
+    <!--        list files Activity       -->
+    <string name="remove">Remove</string>
+
     <!--    popup  -->
     <string name="popup_error_title">Error</string>
     <string name="popup_error_http_message">Bad http request : %s</string>
