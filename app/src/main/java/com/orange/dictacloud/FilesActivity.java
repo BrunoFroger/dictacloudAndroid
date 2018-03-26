@@ -7,6 +7,7 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -169,4 +170,7 @@ public class FilesActivity extends AppCompatActivity {
     }
 
 
+    public void onClickRemoveFile(View view){
+        Toast.makeText(this, getString(R.string.not_implemented_treatment), Toast.LENGTH_LONG).show();
+    }
 }
