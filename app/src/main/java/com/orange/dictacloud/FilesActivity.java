@@ -71,7 +71,7 @@ public class FilesActivity extends AppCompatActivity {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        Log.d (TAG, "BFR : produits apres requete " + mProduits.toString());
+        //Log.d (TAG, "BFR : produits apres requete " + mProduits.toString());
         return mProduits;
     }
 
@@ -100,7 +100,7 @@ public class FilesActivity extends AppCompatActivity {
                         // response
                         //Log.d(TAG, "BFR : Response du serveur : <" + response + ">");
                         String[] pieces = response.split(":");
-                        Log.d(TAG, "BFR : Response du serveur : <" + response + "> nb champs = " + pieces.length);
+                        //Log.d(TAG, "BFR : Response du serveur : <" + response + "> nb champs = " + pieces.length);
                         // en retour on a les donnees suivantes :
                         // <requete>:[OK:KO]:pseudo:email:passwd
                         if (pieces.length >= 3) {
@@ -115,7 +115,7 @@ public class FilesActivity extends AppCompatActivity {
                                 String url = mPreferences.getString(Constants.ACCESS_PHOTO_SERVER, "") + filename;
                                 String description = "...";
                                 mProduits.add(new Produit(indice, type, filename, url, description));
-                                Log.d(TAG, "BFR : fichier => " + filename);
+                                //Log.d(TAG, "BFR : fichier => " + filename);
                             }
                             populateListeProduits(mProduits);
                         } else {

@@ -75,6 +75,7 @@
     <string name="popup_error_http_message">Bad http request : %s</string>
     <string name="popup_ok">OK</string>
     <string name="popup_cancel">Cancel</string>
+    <string name="register_first">Register first</string>
     <string name="register_message">Register before recording</string>
     <string name="register_ok">Register OK</string>
     <string name="unsubscribe_ok">Unsubscribe OK</string>

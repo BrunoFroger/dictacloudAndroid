@@ -87,6 +87,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (id == R.id.action_files) {
+            if(mUserName == ""){
+                Toast.makeText(this, getString(R.string.register_first), Toast.LENGTH_LONG).show();
+                return false;
+            }
             Intent fileIntent = new Intent(MainActivity.this, FilesActivity.class);
             fileIntent.putExtra(Constants.PSEUDO, mUserName);
             startActivity(fileIntent);
