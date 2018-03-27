@@ -51,5 +51,7 @@ public class Constants {
     public final static String REGISTER="register";
     public final static String UNREGISTER="unregister";
     public final static String LISTE="liste";
+    public final static String SENDFILEBYEMAIL="SendFileByEmail";
+    public final static String REMOVEFILEONSERVER="RemoveFileOnServer";
 
 }

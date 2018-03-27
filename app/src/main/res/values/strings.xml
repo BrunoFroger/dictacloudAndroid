@@ -46,6 +46,12 @@
     <string name="send_audio_title">Send Audio</string>
     <string name="send_audio_recording">Record in progress</string>
 
+
+    <!--        file detail Activity -->
+    <string name="file_detail_filename">filename</string>
+    <string name="file_detail_button_remove">Remove</string>
+    <string name="file_detail_button_send">Send</string>
+
     <!--        Activities      -->
     <string name="title_activity_setting">Setting</string>
     <string name="title_activity_about">About</string>
@@ -53,6 +59,7 @@
     <string name="title_activity_recordphoto">Record Photo</string>
     <string name="title_activity_recordaudio">Record Audio</string>
     <string name="title_activity_files">My Files</string>
+    <string name="title_activity_file_detail">File information</string>
 
     <!-- Strings related to login -->
     <string name="prompt_pseudo">Pseudo</string>
@@ -71,7 +78,6 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
 
     <!--        list files Activity       -->
-    <string name="remove">Remove</string>
 
     <!--    popup  -->
     <string name="popup_error_title">Error</string>
