@@ -74,20 +74,8 @@ public class FilesActivity extends AppCompatActivity {
 
         mProduits = new ArrayList<>();
         getListeFichiers(mPseudo, requete);
-
-        //String tmpFilename;
-        //tmpFilename = "dictacloud.bruno.2018-03-25.17-59-31.jpg";
-        //mProduits.add(new Produit(1, "photo", tmpFilename, "http://srvweb/dictacloud/downloads/" + tmpFilename, "desciption 1"));
-        //tmpFilename = "dictacloud.bruno.2018-03-25.17-50-12.jpg";
-        //mProduits.add(new Produit(2, "photo", tmpFilename, "http://srvweb/dictacloud/downloads/" + tmpFilename, "desciption 1"));
-
         // fin TODO recuperation liste de fichiers
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        //Log.d (TAG, "BFR : produits apres requete " + mProduits.toString());
+
         return mProduits;
     }
 
@@ -103,10 +91,8 @@ public class FilesActivity extends AppCompatActivity {
     private boolean getListeFichiers(final String pseudo, final String requete) {
         // todo envoyer le fichier sur le serveur
 
-        //Toast.makeText(FilesActivity.this, getString(R.string.send_in_progress), Toast.LENGTH_LONG).show();
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         String url = preferences.getString(Constants.ACCESS_PHOTO_SERVER, "");
-        //url = url + "?REQUETE=sendPhoto&PSEUDO=" + pseudo + "&FILENAME=" + filename;
         mQueue = Volley.newRequestQueue(this);  // this = context
 
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
@@ -114,11 +100,7 @@ public class FilesActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         // response
-                        //Log.d(TAG, "BFR : Response du serveur : <" + response + ">");
                         String[] pieces = response.split(":");
-                        //Log.d(TAG, "BFR : Response du serveur : <" + response + "> nb champs = " + pieces.length);
-                        // en retour on a les donnees suivantes :
-                        // <requete>:[OK:KO]:pseudo:email:passwd
                         if (pieces.length >= 3) {
                             mRequete = pieces[0];
                             mResult = pieces[1];
@@ -131,7 +113,6 @@ public class FilesActivity extends AppCompatActivity {
                                 String url = mPreferences.getString(Constants.ACCESS_PHOTO_SERVER, "") + filename;
                                 String description = "...";
                                 mProduits.add(new Produit(indice, type, filename, url, description));
-                                //Log.d(TAG, "BFR : fichier => " + filename);
                             }
                             populateListeProduits(mProduits);
                         } else {
@@ -143,8 +124,6 @@ public class FilesActivity extends AppCompatActivity {
                         if (mResult.equals("OK")) {
                             Log.d(TAG, "BFR : requete OK [" + mRequete + "] = " + mResult);
                             statusResponse = true;
-                            //Toast.makeText(FilesActivity.this, getString(R.string.photo_recorded), Toast.LENGTH_LONG).show();
-                            //finish();
                         } else {
                             //TODO affficher une popup avec le message d'erreur
                             Log.d(TAG, "BFR : requete KO [" + mRequete + "] = " + mResult);
@@ -175,9 +154,7 @@ public class FilesActivity extends AppCompatActivity {
         };
 
         mQueue.add(postRequest);
-
         Log.d(TAG, "BFR : Send request mQueue.add : " + url);
-
 
         // TODO: subscribe the new account here.
         return true;

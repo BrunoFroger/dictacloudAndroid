@@ -60,13 +60,13 @@ public class LoginActivity extends AppCompatActivity {
 
         mPreferences = PreferenceManager.getDefaultSharedPreferences(LoginActivity.this);
         // recuperation des infos des préférences si disponibles pour affichage dans les champs
-        String tmp = mPreferences.getString(Constants.PSEUDO,"");
-        if (!tmp.equals("")){
+        String tmp = mPreferences.getString(Constants.PSEUDO, "");
+        if (!tmp.equals("")) {
             mPseudoView.setText(tmp);
             mPseudoView1.setText(tmp);
         }
-        tmp = mPreferences.getString(Constants.EMAIL,"");
-        if (!tmp.equals("")){
+        tmp = mPreferences.getString(Constants.EMAIL, "");
+        if (!tmp.equals("")) {
             mEmailView.setText(tmp);
         }
         Button mSignInButton = (Button) findViewById(R.id.sign_in_button);
@@ -154,12 +154,12 @@ public class LoginActivity extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        if (!mResult.equals("OK")){
+                        if (!mResult.equals("OK")) {
                             Toast.makeText(LoginActivity.this, mResult, Toast.LENGTH_LONG).show();
                             return;
                         }
                         SharedPreferences.Editor editor = mPreferences.edit();
-                        switch (mRequete){
+                        switch (mRequete) {
                             case Constants.UNSUBSCRIBE:
                                 editor.putString(Constants.PSEUDO, "");
                                 editor.putString(Constants.EMAIL, "");

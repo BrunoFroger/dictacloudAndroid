@@ -64,7 +64,7 @@ public class SendAudio extends Activity {
         public void onClick(View arg0) {
             status = false;
             recorder.release();
-            Log.d("VS", "Recorder released");
+            Log.d(TAG, "BFR : Recorder released");
             mRecordMessage.setVisibility(View.INVISIBLE);
             finish();
         }
@@ -83,8 +83,6 @@ public class SendAudio extends Activity {
     };
 
     public void startStreaming() {
-
-
         Thread streamThread = new Thread(new Runnable() {
 
             @Override
@@ -92,11 +90,11 @@ public class SendAudio extends Activity {
                 try {
 
                     DatagramSocket socket = new DatagramSocket();
-                    Log.d("VS", "Socket Created");
+                    Log.d(TAG, "BFR : Socket Created");
 
                     byte[] buffer = new byte[minBufSize];
 
-                    Log.d("VS", "Buffer created of size " + minBufSize);
+                    Log.d(TAG, "BFR : Buffer created of size " + minBufSize);
                     DatagramPacket packet;
 
                     // TODO change adress of server
@@ -105,37 +103,30 @@ public class SendAudio extends Activity {
                     Log.d(TAG, "BFR : adresse du serveur " + url);
                     //final InetAddress destination = InetAddress.getByName(url);
                     final InetAddress destination = InetAddress.getByName("192.168.1.5");
-                    Log.d("VS", "Address retrieved");
+                    Log.d(TAG, "BFR : Address retrieved");
 
 
                     recorder = new AudioRecord(MediaRecorder.AudioSource.MIC, sampleRate, channelConfig, audioFormat, minBufSize * 10);
-                    Log.d("VS", "Recorder initialized");
+                    Log.d(TAG, "BFR : Recorder initialized");
 
                     // TODO uncomment startRecording
                     //recorder.startRecording();
 
-
                     while (status == true) {
-
-
                         //reading data from MIC into buffer
                         minBufSize = recorder.read(buffer, 0, buffer.length);
 
                         //putting buffer in the packet
                         packet = new DatagramPacket(buffer, buffer.length, destination, port);
-
                         socket.send(packet);
                         System.out.println("MinBufferSize: " + minBufSize);
-
-
                     }
 
-
                 } catch (UnknownHostException e) {
-                    Log.e("VS", "UnknownHostException");
+                    Log.e(TAG, "BFR : UnknownHostException");
                 } catch (IOException e) {
                     e.printStackTrace();
-                    Log.e("VS", "IOException");
+                    Log.e(TAG, "BFR : IOException");
                 }
             }
 

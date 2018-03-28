@@ -66,9 +66,9 @@
     <string name="action_files">Mes fichiers</string>
     <string name="title_activity_files">Mes fichiers</string>
     <string name="register_first">Enregistrez vous avant</string>
-    <string name="remove">Supprimer</string>
     <string name="title_activity_file_detail">Informations fichier</string>
     <string name="file_detail_filename">Nom du fichier</string>
     <string name="file_detail_button_remove">Supprimer</string>
     <string name="file_detail_button_send">Envoyer</string>
+    <string name="quality_level">Le niveau de qualité est de %s</string>
 </resources>

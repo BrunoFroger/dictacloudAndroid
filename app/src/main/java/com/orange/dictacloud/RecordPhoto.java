@@ -50,6 +50,10 @@ public class RecordPhoto extends AppCompatActivity {
         setContentView(R.layout.activity_record_photo);
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
+        int compressionRate = preferences.getInt(Constants.TAUX_COMPRESSION, 0);
+        TextView qualityTextView = (TextView) findViewById(R.id.welcome_quality);
+        qualityTextView.setText(String.format(getString(R.string.quality_level), compressionRate + "%"));
+
         Intent intent = getIntent();
         mTreatment = intent.getStringExtra(Constants.TREATMENT_TYPE);
         //btn to close the application
@@ -202,7 +206,7 @@ public class RecordPhoto extends AppCompatActivity {
                 param.put("REQUETE", "sendPhoto");
                 param.put("PSEUDO", pseudo);
                 param.put("FILENAME", filename);
-                param.put("TREATMENT",mTreatment);
+                param.put("TREATMENT", mTreatment);
                 Log.d(TAG, "BFR : getParams : " + param.toString());
                 param.put("IMAGE", images);
                 return param;

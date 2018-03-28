@@ -61,7 +61,7 @@ public class PermissionUtil {
     }
 
     public static void askPermissions(Activity activity, Set<String> permissionsSet, int permissionsCode) {
-        if(permissionsSet.size()>0) {
+        if (permissionsSet.size() > 0) {
             ActivityCompat.requestPermissions(activity,
                     permissionsSet.toArray(new String[permissionsSet.size()]), permissionsCode);
         }

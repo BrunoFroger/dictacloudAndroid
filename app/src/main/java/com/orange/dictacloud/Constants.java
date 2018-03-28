@@ -12,12 +12,12 @@ public class Constants {
     public final static String ACCESS_TYPE_EXTERNAL = "External";
     public final static String INTERNAL_SERVER = "srvweb";
     public final static String EXTERNAL_SERVER = "livebox-3840.dtdns.net:8001";
-    public final static String INTERNAL_PHOTO_SERVER ="http://" + INTERNAL_SERVER + "/dictacloud/";
-    public final static String EXTERNAL_PHOTO_SERVER ="http://" + EXTERNAL_SERVER + "/dictacloud/";
-    public final static String INTERNAL_AUDIO_SERVER ="http://" + INTERNAL_SERVER + "/dictacloud/audioRecord/";
-    public final static String EXTERNAL_AUDIO_SERVER ="http://" + EXTERNAL_SERVER + "/dictacloud/audioRecord/";
-    public final static String INTERNAL_VIDEO_SERVER ="http://" + INTERNAL_SERVER + "/dictacloud/videoRecord/";
-    public final static String EXTERNAL_VIDEO_SERVER ="http://" + EXTERNAL_SERVER + "/dictacloud/videoRecord/";
+    public final static String INTERNAL_PHOTO_SERVER = "http://" + INTERNAL_SERVER + "/dictacloud/";
+    public final static String EXTERNAL_PHOTO_SERVER = "http://" + EXTERNAL_SERVER + "/dictacloud/";
+    public final static String INTERNAL_AUDIO_SERVER = "http://" + INTERNAL_SERVER + "/dictacloud/audioRecord/";
+    public final static String EXTERNAL_AUDIO_SERVER = "http://" + EXTERNAL_SERVER + "/dictacloud/audioRecord/";
+    public final static String INTERNAL_VIDEO_SERVER = "http://" + INTERNAL_SERVER + "/dictacloud/videoRecord/";
+    public final static String EXTERNAL_VIDEO_SERVER = "http://" + EXTERNAL_SERVER + "/dictacloud/videoRecord/";
 
     // TREATMENT TYPE
     public final static String TREATMENT_MAIL = "treatmentMail";
@@ -46,12 +46,12 @@ public class Constants {
     public final static int TAUX_COMPRESSION_DEFAULT = 10;
 
     // Requetes vers serveur
-    public final static String SUBSCRIBE="subsribe";
-    public final static String UNSUBSCRIBE="unsubsribe";
-    public final static String REGISTER="register";
-    public final static String UNREGISTER="unregister";
-    public final static String LISTE="liste";
-    public final static String SENDFILEBYEMAIL="SendFileByEmail";
-    public final static String REMOVEFILEONSERVER="RemoveFileOnServer";
+    public final static String SUBSCRIBE = "subsribe";
+    public final static String UNSUBSCRIBE = "unsubsribe";
+    public final static String REGISTER = "register";
+    public final static String UNREGISTER = "unregister";
+    public final static String LISTE = "liste";
+    public final static String SENDFILEBYEMAIL = "SendFileByEmail";
+    public final static String REMOVEFILEONSERVER = "RemoveFileOnServer";
 
 }

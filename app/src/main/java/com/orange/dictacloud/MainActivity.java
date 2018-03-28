@@ -44,9 +44,9 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         mUserName = preferences.getString(Constants.PSEUDO, "");
-        if (mUserName == ""){
+        if (mUserName == "") {
             findViewById(R.id.welcome_message_suite).setVisibility(View.VISIBLE);
-        }else{
+        } else {
             findViewById(R.id.welcome_message_suite).setVisibility(View.INVISIBLE);
         }
         TextView welcomeTextView = findViewById(R.id.welcome_message);
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (id == R.id.action_files) {
-            if(mUserName == ""){
+            if (mUserName == "") {
                 Toast.makeText(this, getString(R.string.register_first), Toast.LENGTH_LONG).show();
                 return false;
             }
@@ -180,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             Log.d(TAG, "BFR : Debut d'enregistrement => media type=" + mMediaType + "; traitement=" + mTreatmentType);
             // TODO test provisoire des mode de traitement disponibles
-            switch(mTreatmentType){
+            switch (mTreatmentType) {
                 case Constants.TREATMENT_MAIL:
                     break;
                 case Constants.TREATMENT_STORE:
@@ -189,11 +189,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(this, getString(R.string.not_implemented_treatment), Toast.LENGTH_LONG).show();
                     return;
             }
-            /*
-            if (!mTreatmentType.equals(Constants.TREATMENT_MAIL)) {
-                Toast.makeText(this, getString(R.string.not_implemented_treatment), Toast.LENGTH_LONG).show();
-                return;
-            }*/
+
             switch (mMediaType) {
                 case Constants.MEDIA_PHOTO:
                     Intent photoIntent = new Intent(MainActivity.this, RecordPhoto.class);
@@ -202,6 +198,8 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case Constants.MEDIA_VIDEO:
                     Toast.makeText(this, getString(R.string.not_implemented_media), Toast.LENGTH_LONG).show();
+                    //Intent sendVideoIntent = new Intent(MainActivity.this, SendVideo.class);
+                    //startActivity(sendVideoIntent);
                     break;
                 case Constants.MEDIA_AUDIO:
                     Toast.makeText(this, getString(R.string.not_implemented_media), Toast.LENGTH_LONG).show();

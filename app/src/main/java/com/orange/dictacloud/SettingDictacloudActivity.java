@@ -88,7 +88,7 @@ public class SettingDictacloudActivity extends AppCompatActivity {
                 }
                 break;
             case R.id.RadioBt_server_internal:
-                if (checked){
+                if (checked) {
                     editor.putString(Constants.ACCESS_PHOTO_SERVER, Constants.INTERNAL_PHOTO_SERVER);
                     editor.putString(Constants.ACCESS_AUDIO_SERVER, Constants.INTERNAL_AUDIO_SERVER);
                     editor.putString(Constants.ACCESS_VIDEO_SERVER, Constants.INTERNAL_VIDEO_SERVER);
@@ -98,6 +98,7 @@ public class SettingDictacloudActivity extends AppCompatActivity {
         editor.commit();
         finish();
     }
+
     public void onRadioButtontraitementClicked(View view) {
     }
 

@@ -35,7 +35,7 @@ public class FileDetailActivity extends AppCompatActivity {
     private String mPseudo;
     SharedPreferences mPreferences;
     private String mMessage;
-    private boolean statusResponse;
+    private Boolean statusResponse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +58,7 @@ public class FileDetailActivity extends AppCompatActivity {
             public void onClick(View view) {
                 mRequete = Constants.REMOVEFILEONSERVER;
                 mFilename = produit.getTitre();
-                sendRequete(mFilename,mRequete);
+                sendRequete(mFilename, mRequete);
                 Toast.makeText(getApplicationContext(), getString(R.string.not_implemented_treatment), Toast.LENGTH_LONG).show();
             }
         });
@@ -69,7 +69,7 @@ public class FileDetailActivity extends AppCompatActivity {
             public void onClick(View view) {
                 mRequete = Constants.SENDFILEBYEMAIL;
                 mFilename = produit.getTitre();
-                sendRequete(mFilename,mRequete);
+                sendRequete(mFilename, mRequete);
                 Toast.makeText(getApplicationContext(), getString(R.string.not_implemented_treatment), Toast.LENGTH_LONG).show();
             }
         });
@@ -81,10 +81,8 @@ public class FileDetailActivity extends AppCompatActivity {
     private boolean sendRequete(final String filename, final String requete) {
         // todo envoyer le fichier sur le serveur
 
-        //Toast.makeText(FilesActivity.this, getString(R.string.send_in_progress), Toast.LENGTH_LONG).show();
         String url = mPreferences.getString(Constants.ACCESS_PHOTO_SERVER, "");
-        //url = url + "?REQUETE=sendPhoto&PSEUDO=" + pseudo + "&FILENAME=" + filename;
-        mQueue = Volley.newRequestQueue(this);  // this = context
+        mQueue = Volley.newRequestQueue(this);
 
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -94,8 +92,6 @@ public class FileDetailActivity extends AppCompatActivity {
                         //Log.d(TAG, "BFR : Response du serveur : <" + response + ">");
                         String[] pieces = response.split(":");
                         //Log.d(TAG, "BFR : Response du serveur : <" + response + "> nb champs = " + pieces.length);
-                        // en retour on a les donnees suivantes :
-                        // <requete>:[OK:KO]:pseudo:email:passwd
                         if (pieces.length >= 3) {
                             mRequete = pieces[0];
                             mResult = pieces[1];

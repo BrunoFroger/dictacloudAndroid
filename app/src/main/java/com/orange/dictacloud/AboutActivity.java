@@ -23,6 +23,7 @@ public class AboutActivity extends AppCompatActivity {
             "j'ajouterais vos remarques dans la liste des évolutions de cette application" +
             "<br><br>" +
             "<b>Copyright B.Froger 2018</b><br>";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

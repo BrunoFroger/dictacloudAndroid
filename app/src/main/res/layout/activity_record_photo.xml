@@ -21,11 +21,22 @@
         android:id="@+id/welcome_message2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/welcome_message"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
-        android:layout_below="@+id/welcome_message"
         android:gravity="center_horizontal"
         android:text="@string/welcome_record_photo2"
+        />
+
+    <TextView
+        android:id="@+id/welcome_quality"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/welcome_message2"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center_horizontal"
+        android:text=""
         />
 
     <Button
@@ -33,7 +44,7 @@
         style="?android:textAppearanceSmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/welcome_message2"
+        android:layout_below="@+id/welcome_quality"
         android:layout_marginTop="25dp"
         android:onClick="recordPhoto"
         android:text="@string/button_take_photo"
