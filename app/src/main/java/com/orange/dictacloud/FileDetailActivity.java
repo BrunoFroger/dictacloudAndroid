@@ -60,7 +60,7 @@ public class FileDetailActivity extends AppCompatActivity {
                 mRequete = Constants.REMOVEFILEONSERVER;
                 mFilename = produit.getTitre();
                 sendRequete(mFilename, mRequete);
-                Toast.makeText(getApplicationContext(), getString(R.string.not_implemented_treatment), Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), getString(R.string.not_implemented_treatment), Toast.LENGTH_LONG).show();
             }
         });
 
@@ -71,7 +71,7 @@ public class FileDetailActivity extends AppCompatActivity {
                 mRequete = Constants.SENDFILEBYEMAIL;
                 mFilename = produit.getTitre();
                 sendRequete(mFilename, mRequete);
-                Toast.makeText(getApplicationContext(), getString(R.string.not_implemented_treatment), Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), getString(R.string.not_implemented_treatment), Toast.LENGTH_LONG).show();
             }
         });
 

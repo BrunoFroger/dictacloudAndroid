@@ -1,5 +1,7 @@
 package com.orange.dictacloud;
 
+import android.util.Log;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -10,6 +12,9 @@ import java.io.Serializable;
  */
 
 public class Produit implements Serializable {
+
+    private final String TAG = getClass().getSimpleName();
+
     @SerializedName("numero")
     @Expose
     private long numero;
@@ -71,7 +76,9 @@ public class Produit implements Serializable {
     }
 
     public String getUrlImage() {
-        return urlImage;
+        String tmp = urlImage;
+        Log.d (TAG, "BFR : produits.getUrlImage = " + tmp);
+        return tmp;
     }
 
     public void setUrlImage(String urlImage) {

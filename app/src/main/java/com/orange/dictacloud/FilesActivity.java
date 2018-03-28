@@ -110,7 +110,7 @@ public class FilesActivity extends AppCompatActivity {
                                 int indice = i - 2;
                                 String type = "photo";
                                 String filename = pieces[i];
-                                String url = mPreferences.getString(Constants.ACCESS_PHOTO_SERVER, "") + filename;
+                                String url = mPreferences.getString(Constants.ACCESS_PHOTO_SERVER, "") + "downloads/" + filename;
                                 String description = "...";
                                 mProduits.add(new Produit(indice, type, filename, url, description));
                             }
