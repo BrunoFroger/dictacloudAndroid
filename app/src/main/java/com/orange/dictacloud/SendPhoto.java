@@ -32,7 +32,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RecordPhoto extends AppCompatActivity {
+public class SendPhoto extends AppCompatActivity {
     private final String TAG = getClass().getSimpleName();
     private Camera mCamera = null;
     private CameraView mCameraView = null;
@@ -47,7 +47,7 @@ public class RecordPhoto extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_record_photo);
+        setContentView(R.layout.activity_send_photo);
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         int compressionRate = preferences.getInt(Constants.TAUX_COMPRESSION, 0);
@@ -110,7 +110,7 @@ public class RecordPhoto extends AppCompatActivity {
             // generation du nom de fichier
             // nom de fichier = Dictacloud.YYYY-MM-JJ.hh-mm-ss.jpg
 
-            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(RecordPhoto.this);
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(SendPhoto.this);
             String pseudo = preferences.getString(Constants.PSEUDO, "");
 
             SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd.HH-mm-ss");
@@ -122,7 +122,7 @@ public class RecordPhoto extends AppCompatActivity {
             sendPhoto(bytes, pseudo, filename);
 
             if (!statusResponse) {
-                final Dialog dialog = new Dialog(RecordPhoto.this);
+                final Dialog dialog = new Dialog(SendPhoto.this);
                 dialog.setCancelable(false);
                 dialog.setContentView(R.layout.popup_error_layout);
                 String popupMessage = String.format(getString(R.string.popup_error_http_message), mMessage);
@@ -148,7 +148,7 @@ public class RecordPhoto extends AppCompatActivity {
     private boolean sendPhoto(final byte[] bytesPhoto, final String pseudo, final String filename) {
         // todo envoyer le fichier sur le serveur
 
-        Toast.makeText(RecordPhoto.this, getString(R.string.send_in_progress), Toast.LENGTH_LONG).show();
+        Toast.makeText(SendPhoto.this, getString(R.string.send_in_progress), Toast.LENGTH_LONG).show();
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         String url = preferences.getString(Constants.ACCESS_PHOTO_SERVER, "");
         //url = url + "?REQUETE=sendPhoto&PSEUDO=" + pseudo + "&FILENAME=" + filename;
@@ -171,19 +171,19 @@ public class RecordPhoto extends AppCompatActivity {
                             mMessage = pieces[3];
                         } else {
                             Log.d(TAG, "BFR : requete KO, manque de parametres en retour");
-                            Toast.makeText(RecordPhoto.this, getString(R.string.photo_error_result), Toast.LENGTH_LONG).show();
+                            Toast.makeText(SendPhoto.this, getString(R.string.photo_error_result), Toast.LENGTH_LONG).show();
                             return;
                         }
                         ;
                         if (mResult.equals("OK")) {
                             Log.d(TAG, "BFR : requete OK [" + mRequete + "] = " + mResult);
                             statusResponse = true;
-                            Toast.makeText(RecordPhoto.this, getString(R.string.photo_recorded), Toast.LENGTH_LONG).show();
+                            Toast.makeText(SendPhoto.this, getString(R.string.photo_recorded), Toast.LENGTH_LONG).show();
                             finish();
                         } else {
                             //TODO affficher une popup avec le message d'erreur
                             Log.d(TAG, "BFR : requete KO [" + mRequete + "] = " + mResult);
-                            Toast.makeText(RecordPhoto.this, mMessage, Toast.LENGTH_LONG).show();
+                            Toast.makeText(SendPhoto.this, mMessage, Toast.LENGTH_LONG).show();
                             statusResponse = false;
                         }
                     }
@@ -193,7 +193,7 @@ public class RecordPhoto extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         // todo afficher popup d'erreur
                         Log.d(TAG, "BFR : Error.Response : <" + error.toString() + ">");
-                        Toast.makeText(RecordPhoto.this, error.toString(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(SendPhoto.this, error.toString(), Toast.LENGTH_LONG).show();
                     }
                 }
         ) {

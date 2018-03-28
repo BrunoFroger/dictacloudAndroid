@@ -43,7 +43,7 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-            android:name=".RecordPhoto"
+            android:name=".SendPhoto"
             android:label="@string/title_activity_recordphoto">
         </activity>
         <activity
@@ -58,6 +58,11 @@
         <activity
             android:name=".FileDetailActivity"
             android:label="@string/title_activity_file_detail"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".SendVideo"
+            android:label="@string/title_activity_send_video"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>

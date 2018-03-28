@@ -22,6 +22,8 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class SendAudio extends Activity {
@@ -99,11 +101,20 @@ public class SendAudio extends Activity {
 
                     // TODO change adress of server
                     SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(SendAudio.this);
-                    String url = preferences.getString(Constants.ACCESS_AUDIO_SERVER, "");
+                    String pseudo = preferences.getString(Constants.PSEUDO, "");
+
+                    SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd.HH-mm-ss");
+                    String fileDate = "2018-03-12.20-12-34";
+                    fileDate = dt.format(new Date()).toString();
+                    String filename = String.format("dictacloud." + pseudo + "." + fileDate + ".audio");
+                    //String url = "livebox-3840.dtdns.net:8001/dictacloud/audioRecord/" + filename;
+                    String url = "livebox-3840.dtdns.net";
+                    //String url = preferences.getString(Constants.ACCESS_AUDIO_SERVER, "");
                     Log.d(TAG, "BFR : adresse du serveur " + url);
                     //final InetAddress destination = InetAddress.getByName(url);
-                    final InetAddress destination = InetAddress.getByName("192.168.1.5");
-                    Log.d(TAG, "BFR : Address retrieved");
+                    //final InetAddress destination = InetAddress.getByName("192.168.1.5");
+                    final InetAddress destination = InetAddress.getByName(url);
+                    Log.d(TAG, "BFR : Address retrieved = " + destination);
 
 
                     recorder = new AudioRecord(MediaRecorder.AudioSource.MIC, sampleRate, channelConfig, audioFormat, minBufSize * 10);

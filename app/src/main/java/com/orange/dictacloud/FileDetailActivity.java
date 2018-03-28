@@ -42,6 +42,7 @@ public class FileDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mPseudo=mPreferences.getString(Constants.PSEUDO,"");
 
         setContentView(R.layout.activity_file_detail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -132,6 +133,7 @@ public class FileDetailActivity extends AppCompatActivity {
                 Map<String, String> param = new HashMap<>();
 
                 param.put("REQUETE", requete);
+                param.put("PSEUDO", mPseudo);
                 param.put("FILENAME", filename);
                 Log.d(TAG, "BFR : getParams : " + param.toString());
                 return param;

@@ -179,32 +179,60 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, getString(R.string.register_message), Toast.LENGTH_LONG).show();
         } else {
             Log.d(TAG, "BFR : Debut d'enregistrement => media type=" + mMediaType + "; traitement=" + mTreatmentType);
-            // TODO test provisoire des mode de traitement disponibles
-            switch (mTreatmentType) {
-                case Constants.TREATMENT_MAIL:
+            // TODO test provisoire des mode de traitement disponibles assupprimer lorsque tous les Toast auront disparus
+            switch(mMediaType){
+                case Constants.MEDIA_PHOTO:
+                    switch (mTreatmentType) {
+                        case Constants.TREATMENT_MAIL:
+                        case Constants.TREATMENT_STORE:
+                            break;
+                        case Constants.TREATMENT_CLOUD:
+                            Toast.makeText(this, getString(R.string.not_implemented_treatment), Toast.LENGTH_LONG).show();
+                            return;
+                    }
                     break;
-                case Constants.TREATMENT_STORE:
+                case Constants.MEDIA_VIDEO:
+                    switch (mTreatmentType) {
+                        case Constants.TREATMENT_MAIL:
+                        case Constants.TREATMENT_STORE:
+                        case Constants.TREATMENT_CLOUD:
+                            Toast.makeText(this, getString(R.string.not_implemented_treatment), Toast.LENGTH_LONG).show();
+                            return;
+                    }
                     break;
-                case Constants.TREATMENT_CLOUD:
-                    Toast.makeText(this, getString(R.string.not_implemented_treatment), Toast.LENGTH_LONG).show();
-                    return;
+                case Constants.MEDIA_AUDIO:
+                    switch (mTreatmentType) {
+                        case Constants.TREATMENT_STORE:
+                            break;
+                        case Constants.TREATMENT_MAIL:
+                        case Constants.TREATMENT_CLOUD:
+                            Toast.makeText(this, getString(R.string.not_implemented_treatment), Toast.LENGTH_LONG).show();
+                            return;
+                    }
+                    break;
             }
 
             switch (mMediaType) {
                 case Constants.MEDIA_PHOTO:
-                    Intent photoIntent = new Intent(MainActivity.this, RecordPhoto.class);
+                    Intent photoIntent = new Intent(MainActivity.this, SendPhoto.class);
                     photoIntent.putExtra(Constants.TREATMENT_TYPE, mTreatmentType);
                     startActivity(photoIntent);
                     break;
                 case Constants.MEDIA_VIDEO:
-                    Toast.makeText(this, getString(R.string.not_implemented_media), Toast.LENGTH_LONG).show();
-                    //Intent sendVideoIntent = new Intent(MainActivity.this, SendVideo.class);
-                    //startActivity(sendVideoIntent);
+                    if (false){ // TODO (pour debug) false => fonction non disponble
+                        Intent sendVideoIntent = new Intent(MainActivity.this, SendVideo.class);
+                        startActivity(sendVideoIntent);
+                    }else{
+                        Toast.makeText(this, getString(R.string.not_implemented_media), Toast.LENGTH_LONG).show();
+                    }
                     break;
                 case Constants.MEDIA_AUDIO:
-                    Toast.makeText(this, getString(R.string.not_implemented_media), Toast.LENGTH_LONG).show();
-                    //Intent sendAudioIntent = new Intent(MainActivity.this, SendAudio.class);
-                    //startActivity(sendAudioIntent);
+                    if (true){ // TODO (pour debug) false => fonction non disponble
+                        Intent sendAudioIntent = new Intent(MainActivity.this, SendAudio.class);
+                        startActivity(sendAudioIntent);
+                    }else{
+                        Toast.makeText(this, getString(R.string.not_implemented_media), Toast.LENGTH_LONG).show();
+                    }
                     break;
             }
         }

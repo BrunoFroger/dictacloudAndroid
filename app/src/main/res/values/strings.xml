@@ -90,5 +90,6 @@
     <string name="unsubscribe_ok">Unsubscribe OK</string>
     <string name="unregister_ok">Unregister OK</string>
     <string name="register_ko">Register KO : %s</string>
+    <string name="title_activity_send_video">SendVideo</string>
 
 </resources>
