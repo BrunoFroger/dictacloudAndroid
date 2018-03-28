@@ -48,7 +48,12 @@ public class FilesActivity extends AppCompatActivity {
         mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        //populateListeProduits(createListe());
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         createListe();
         getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

@@ -111,8 +111,8 @@ public class FileDetailActivity extends AppCompatActivity {
                         if (mResult.equals("OK")) {
                             Log.d(TAG, "BFR : requete OK [" + mRequete + "] = " + mResult);
                             statusResponse = true;
-                            //Toast.makeText(FilesActivity.this, getString(R.string.photo_recorded), Toast.LENGTH_LONG).show();
-                            //finish();
+                            Toast.makeText(FileDetailActivity.this, mMessage, Toast.LENGTH_LONG).show();
+                            finish();
                         } else {
                             //TODO affficher une popup avec le message d'erreur
                             Log.d(TAG, "BFR : requete KO [" + mRequete + "] = " + mResult);
