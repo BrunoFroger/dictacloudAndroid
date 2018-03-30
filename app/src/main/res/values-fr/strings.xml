@@ -71,4 +71,5 @@
     <string name="file_detail_button_remove">Supprimer</string>
     <string name="file_detail_button_send">Envoyer</string>
     <string name="quality_level">Le niveau de qualité est de %s</string>
+    <string name="title_activity_send_video">Enregistrement Vidéo</string>
 </resources>

@@ -71,6 +71,9 @@ public class SendPhoto extends AppCompatActivity {
         super.onResume();
         try {
             mCamera = Camera.open();//you can use open(int) to use different cameras
+            Camera.Parameters cameraParameters = mCamera.getParameters();
+            cameraParameters.setRotation(90);
+            mCamera.setParameters(cameraParameters);
         } catch (Exception e) {
             Log.d(TAG, "ERROR : Failed to get camera: " + e.getMessage());
         }
