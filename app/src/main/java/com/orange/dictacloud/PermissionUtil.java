@@ -30,6 +30,8 @@ public class PermissionUtil {
 
     public static final Set<String> sAllPermissionsList = new HashSet<>(Arrays.asList(
             Manifest.permission.CAMERA,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.INTERNET,
             Manifest.permission.RECORD_AUDIO));
 
     public static boolean isAllPermissionsGranted(Context context) {

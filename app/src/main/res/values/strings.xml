@@ -45,7 +45,7 @@
     <string name="traitement_stockage">Local storage</string>
 
     <!--        Send Audio Activity -->
-    <string name="send_audio_title">Send Audio</string>
+    <string name="send_audio_title">Send Audio (in developpement, not operationnal)</string>
     <string name="send_audio_recording">Record in progress</string>
 
 

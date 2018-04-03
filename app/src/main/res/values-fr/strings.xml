@@ -41,7 +41,7 @@
     <string name="send_in_progress">Envoi en cours</string>
     <string name="media_select_photo">Photo</string>
     <string name="media_select_video">Video</string>
-    <string name="send_audio_title">Envoi audio</string>
+    <string name="send_audio_title">Envoi audio (developpement en cours, pas opérationnel)</string>
     <string name="send_audio_recording">Enregistrement en cours</string>
     <string name="title_activity_recordaudio">Enregistrement audio</string>
     <string name="prompt_pseudo">Pseudo</string>

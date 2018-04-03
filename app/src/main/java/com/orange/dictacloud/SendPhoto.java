@@ -149,7 +149,6 @@ public class SendPhoto extends AppCompatActivity {
     };
 
     private boolean sendPhoto(final byte[] bytesPhoto, final String pseudo, final String filename) {
-        // todo envoyer le fichier sur le serveur
 
         Toast.makeText(SendPhoto.this, getString(R.string.send_in_progress), Toast.LENGTH_LONG).show();
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
