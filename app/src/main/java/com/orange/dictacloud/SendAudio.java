@@ -60,6 +60,7 @@ public class SendAudio extends Activity {
     private boolean isRecording = false;
     private String mFilename;
     private String mMessage;
+    private String mPort;
 
 
     @Override
@@ -78,6 +79,12 @@ public class SendAudio extends Activity {
 
         mRecordMessage = (TextView) findViewById(R.id.Recording);
         mRecordMessage.setVisibility(View.INVISIBLE);
+
+        SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd.HH-mm-ss");
+        String fileDate = "2018-03-12.20-12-34";
+        fileDate = dt.format(new Date()).toString();
+        mFilename = String.format("dictacloud." + mPseudo + "." + fileDate + ".audio");
+        Log.d(TAG, "BFR : Filename = " + mFilename);
 
     }
 
@@ -136,13 +143,6 @@ public class SendAudio extends Activity {
                     DatagramPacket packet;
 
                     // TODO change adress of server
-                    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(SendAudio.this);
-                    String pseudo = preferences.getString(Constants.PSEUDO, "");
-
-                    SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd.HH-mm-ss");
-                    String fileDate = "2018-03-12.20-12-34";
-                    fileDate = dt.format(new Date()).toString();
-                    mFilename = String.format("dictacloud." + pseudo + "." + fileDate + ".audio");
                     //String url = "livebox-3840.dtdns.net:8001/dictacloud/audioRecord/" + filename;
                     String url = "livebox-3840.dtdns.net";
                     //String url = preferences.getString(Constants.ACCESS_AUDIO_SERVER, "");
@@ -189,6 +189,7 @@ public class SendAudio extends Activity {
         // todo envoi de la requete au serveur
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         String url = preferences.getString(Constants.ACCESS_AUDIO_SERVER, "");
+        Log.d(TAG, "BFR : url de la requete : <" + url + ">");
         mQueue = Volley.newRequestQueue(this);  // this = context
 
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
@@ -205,6 +206,7 @@ public class SendAudio extends Activity {
                             mRequete = pieces[0];
                             mResult = pieces[1];
                             mMessage = pieces[2];
+                            mPort = pieces[3];
                         } else {
                             Log.d(TAG, "BFR : requete KO, manque de parametres en retour");
                             Toast.makeText(SendAudio.this, getString(R.string.photo_error_result), Toast.LENGTH_LONG).show();
@@ -236,7 +238,7 @@ public class SendAudio extends Activity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> param = new HashMap<>();
 
-                param.put("REQUETE", "sendPhoto");
+                param.put("REQUETE", "sendAudio");
                 param.put("FILENAME", mFilename);
                 param.put("TREATMENT", treatment);
                 Log.d(TAG, "BFR : getParams : " + param.toString());

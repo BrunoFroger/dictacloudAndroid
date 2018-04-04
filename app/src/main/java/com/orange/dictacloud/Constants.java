@@ -14,8 +14,8 @@ public class Constants {
     public final static String EXTERNAL_SERVER = "livebox-3840.dtdns.net:8001";
     public final static String INTERNAL_PHOTO_SERVER = "http://" + INTERNAL_SERVER + "/dictacloud/";
     public final static String EXTERNAL_PHOTO_SERVER = "http://" + EXTERNAL_SERVER + "/dictacloud/";
-    public final static String INTERNAL_AUDIO_SERVER = "http://" + INTERNAL_SERVER + "/dictacloud/audioRecord/";
-    public final static String EXTERNAL_AUDIO_SERVER = "http://" + EXTERNAL_SERVER + "/dictacloud/audioRecord/";
+    public final static String INTERNAL_AUDIO_SERVER = "http://" + INTERNAL_SERVER + "/dictacloud/";
+    public final static String EXTERNAL_AUDIO_SERVER = "http://" + EXTERNAL_SERVER + "/dictacloud/";
     public final static String INTERNAL_VIDEO_SERVER = "http://" + INTERNAL_SERVER + "/dictacloud/videoRecord/";
     public final static String EXTERNAL_VIDEO_SERVER = "http://" + EXTERNAL_SERVER + "/dictacloud/videoRecord/";
 
