@@ -106,7 +106,7 @@ public class SendAudio extends Activity {
             mRecordMessage.setVisibility(View.INVISIBLE);
             isRecording=false;
 
-            sendRequete("stop");
+            sendRequete("stopAudio");
             finish();
         }
     }
@@ -116,7 +116,7 @@ public class SendAudio extends Activity {
         @Override
         public void onClick(View arg0) {
             if (!isRecording){
-                sendRequete("start");
+                sendRequete("startAudio");
 
                 status = true;
                 startStreaming();
