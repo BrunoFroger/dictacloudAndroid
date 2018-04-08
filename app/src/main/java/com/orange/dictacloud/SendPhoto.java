@@ -64,6 +64,8 @@ public class SendPhoto extends AppCompatActivity {
                 System.exit(0);
             }
         });
+
+
     }
 
     @Override

@@ -6,6 +6,7 @@ package com.orange.dictacloud;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
+import android.hardware.Camera;
 import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaRecorder;
@@ -15,6 +16,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,7 +45,6 @@ public class SendAudio extends Activity {
 
     public byte[] buffer;
     public static DatagramSocket socket;
-    private int port = 50005;
 
     AudioRecord mRecorder;
     private String mRequete = "sendAudio";
@@ -61,6 +62,7 @@ public class SendAudio extends Activity {
     private String mFilename;
     private String mMessage;
     private String mPort;
+    private String mAlertMode;
 
 
     @Override
@@ -86,6 +88,20 @@ public class SendAudio extends Activity {
         mFilename = String.format("dictacloud." + mPseudo + "." + fileDate + ".audio");
         Log.d(TAG, "BFR : Filename = " + mFilename);
 
+        // positionne le mode d'alerte pour enreigistrement audio/video
+        mAlertMode = preferences.getString(Constants.ALERT_TYPE,"");
+        RadioButton alertSelected;
+        if (mAlertMode.equals(Constants.ALERT_FLASH)){
+            alertSelected = (RadioButton) findViewById(R.id.RadioBt_select_alert_flash);
+        } else if (mAlertMode.equals(Constants.ALERT_LED)){
+            alertSelected = (RadioButton) findViewById(R.id.RadioBt_select_alert_led);
+        } else if (mAlertMode.equals(Constants.ALERT_VIBRATION)){
+            alertSelected = (RadioButton) findViewById(R.id.RadioBt_select_alert_vibration);
+        } else {
+            alertSelected = (RadioButton) findViewById(R.id.RadioBt_select_alert_none);
+            mAlertMode = Constants.ALERT_NONE;
+        }
+        alertSelected.toggle();
     }
 
     private final OnClickListener stopListener = new OnClickListener() {
@@ -105,6 +121,7 @@ public class SendAudio extends Activity {
             Log.d(TAG, "BFR : Audio recorder released");
             mRecordMessage.setVisibility(View.INVISIBLE);
             isRecording=false;
+            activateAlert(true);
 
             sendRequete("stopAudio");
             finish();
@@ -122,6 +139,7 @@ public class SendAudio extends Activity {
                 startStreaming();
                 mRecordMessage.setVisibility(View.VISIBLE);
                 isRecording=true;
+                activateAlert(true);
             }
         }
 
@@ -151,6 +169,7 @@ public class SendAudio extends Activity {
                     //final InetAddress destination = InetAddress.getByName("192.168.1.5");
                     final InetAddress destination = InetAddress.getByName(url);
                     Log.d(TAG, "BFR : Address retrieved = " + destination);
+                    String adresseIp = destination.getHostAddress();
 
 
                     mRecorder = new AudioRecord(MediaRecorder.AudioSource.MIC, sampleRate, channelConfig, audioFormat, minBufSize * 10);
@@ -158,15 +177,16 @@ public class SendAudio extends Activity {
 
                     mRecorder.startRecording();
 
+                    Log.d(TAG,"BFR : recordAudio : @IP " + adresseIp + ";  port : " + mPort);
                     int i = 0;
                     while (status == true) {
                         //reading data from MIC into buffer
                         minBufSize = mRecorder.read(buffer, 0, buffer.length);
 
                         //putting buffer in the packet
-                        packet = new DatagramPacket(buffer, buffer.length, destination, port);
+                        packet = new DatagramPacket(buffer, buffer.length, destination, Integer.parseInt(mPort));
                         // TODO uncomment send
-                        //socket.send(packet);
+                        socket.send(packet);
                         //Log.d(TAG,"BFR : recordAudio : packet " + i++ + " traité : " + minBufSize);
                     }
 
@@ -194,6 +214,7 @@ public class SendAudio extends Activity {
 
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
+                    String returnTreatment;
                     @Override
                     public void onResponse(String response) {
                         // response
@@ -202,21 +223,23 @@ public class SendAudio extends Activity {
                         Log.d(TAG, "BFR : Response du serveur : <" + response + "> nb champs = " + pieces.length);
                         // en retour on a les donnees suivantes :
                         // <requete>:[OK:KO]:pseudo:email:passwd
-                        if (pieces.length >= 4) {
+                        if (pieces.length >= 5) {
                             mRequete = pieces[0];
                             mResult = pieces[1];
-                            mMessage = pieces[2];
-                            mPort = pieces[3];
+                            mPort = pieces[2];
+                            returnTreatment = pieces[3];
+                            mMessage = pieces[4];
                         } else {
                             Log.d(TAG, "BFR : requete KO, manque de parametres en retour");
                             Toast.makeText(SendAudio.this, getString(R.string.photo_error_result), Toast.LENGTH_LONG).show();
                             return;
                         }
-                        ;
                         if (mResult.equals("OK")) {
                             Log.d(TAG, "BFR : requete OK [" + mRequete + "] = " + mResult);
-                            Toast.makeText(SendAudio.this, getString(R.string.photo_recorded), Toast.LENGTH_LONG).show();
-                            finish();
+                            Toast.makeText(SendAudio.this, getString(R.string.audio_recorded), Toast.LENGTH_LONG).show();
+                            if (returnTreatment == "stopAudio") {
+                                finish();
+                            }
                         } else {
                             //TODO affficher une popup avec le message d'erreur
                             Log.d(TAG, "BFR : requete KO [" + mRequete + "] = " + mResult);
@@ -256,5 +279,86 @@ public class SendAudio extends Activity {
             e.printStackTrace();
         }
 
+    }
+
+    public void onAlertRadioButtonClicked(View view) {
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        boolean checked = ((RadioButton) view).isChecked();
+        SharedPreferences.Editor editor = preferences.edit();
+        // Check which radio button was clicked
+        switch (view.getId()) {
+            case R.id.RadioBt_select_alert_flash:
+                if (checked) {
+                    editor.putString(Constants.ALERT_TYPE, Constants.ALERT_FLASH);
+                }
+                break;
+            case R.id.RadioBt_select_alert_led:
+                if (checked) {
+                    editor.putString(Constants.ALERT_TYPE, Constants.ALERT_LED);
+                }
+                break;
+            case R.id.RadioBt_select_alert_vibration:
+                if (checked) {
+                    editor.putString(Constants.ALERT_TYPE, Constants.ALERT_VIBRATION);
+                }
+                break;
+            case R.id.RadioBt_select_alert_none:
+                if (checked) {
+                    editor.putString(Constants.ALERT_TYPE, Constants.ALERT_NONE);
+                }
+                break;
+        }
+        editor.commit();
+        mAlertMode = preferences.getString(Constants.ALERT_TYPE, "");
+    }
+
+    private void activateAlert(boolean value){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String alertType = preferences.getString(Constants.ALERT_TYPE, "");
+        Camera mycam;
+        Camera.Parameters p;
+        if (value){
+            switch (alertType){
+                case Constants.ALERT_FLASH:
+                    Log.d(TAG, "BFR : allumage du flash");
+                    mycam = Camera.open();
+                    p = mycam.getParameters();// = mycam.getParameters();
+                    p.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
+                    mycam.setParameters(p); //time passes
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                    p.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
+                    mycam.release();
+                    // activate flash
+                    break;
+                case Constants.ALERT_LED:
+                    // activate led
+                    break;
+                case Constants.ALERT_VIBRATION:
+                    // activate vibration
+                    break;
+                case Constants.ALERT_NONE:
+                    mycam = Camera.open();
+                    p = mycam.getParameters();// = mycam.getParameters();
+                    // desactivate all alerts
+                    p.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
+                    mycam.release();
+                    break;
+
+            }
+        }else{
+            // desactivate all alerts
+            mycam = Camera.open();
+            p = mycam.getParameters();// = mycam.getParameters();
+            // desactivate all alerts
+            p.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
+            mycam.release();
+        }
     }
 }

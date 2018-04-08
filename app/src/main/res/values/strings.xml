@@ -47,6 +47,12 @@
     <!--        Send Audio Activity -->
     <string name="send_audio_title">Send Audio (in developpement, not operationnal)</string>
     <string name="send_audio_recording">Record in progress</string>
+    <string name="media_select_alert_message">Select wich alert you want to use</string>
+    <string name="media_select_alert_flash">Camera Flash</string>
+    <string name="media_select_alert_led">Notification Led</string>
+    <string name="media_select_alert_vibration">Vibration</string>
+    <string name="media_select_alert_none">No alert</string>
+    <string name="audio_recorded">Your audio file is recorded</string>
 
 
     <!--        file detail Activity -->

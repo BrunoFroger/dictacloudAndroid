@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     String mUserName;
     String mMediaType;
     private String mTreatmentType;
+    private String mAlertMode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -279,6 +280,7 @@ public class MainActivity extends AppCompatActivity {
             mTreatmentType = Constants.TREATMENT_MAIL;
         }
         treatmentSelected.toggle();
+
 
         int compressRate = preferences.getInt(Constants.TAUX_COMPRESSION, 0);
         if (compressRate == 0) {

@@ -26,8 +26,9 @@
         android:textColor="@color/colorAccent"/>
 
     <LinearLayout
+        android:id="@+id/start_stop_buttons"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/Recording"
         android:gravity="center_horizontal">
 
@@ -45,5 +46,68 @@
             android:layout_marginLeft="50dp"
             android:layout_toRightOf="@+id/start_button"
             android:text="Stop"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/select_alert_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="200dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/media_select_alert_message"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/select_alert"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="240dp">
+
+        <RadioGroup
+            android:id="@+id/Radiobt_select_alert_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/select_alert_message"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/RadioBt_select_alert_flash"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:onClick="onAlertRadioButtonClicked"
+                android:text="@string/media_select_alert_flash"/>
+
+            <RadioButton
+                android:id="@+id/RadioBt_select_alert_led"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:onClick="onAlertRadioButtonClicked"
+                android:text="@string/media_select_alert_led"/>
+
+            <RadioButton
+                android:id="@+id/RadioBt_select_alert_vibration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:onClick="onAlertRadioButtonClicked"
+                android:text="@string/media_select_alert_vibration"/>
+
+            <RadioButton
+                android:id="@+id/RadioBt_select_alert_none"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:onClick="onAlertRadioButtonClicked"
+                android:text="@string/media_select_alert_none"/>
+
+        </RadioGroup>
     </LinearLayout>
 </RelativeLayout>

@@ -29,6 +29,12 @@ public class Constants {
     public final static String MEDIA_VIDEO = "video";
     public final static String MEDIA_AUDIO = "audio";
 
+    // ALERT TYPE VALUES
+    public final static String ALERT_FLASH = "flash";
+    public final static String ALERT_LED = "led";
+    public final static String ALERT_VIBRATION = "vibration";
+    public final static String ALERT_NONE = "none";
+
     // Preferences keys
     public final static String INITIALIZED = "Initialized";
     public final static String ACCESS_TYPE = "accesType";
@@ -41,6 +47,7 @@ public class Constants {
     public final static String MEDIA_TYPE = "MediaType";
     public final static String LOGIN_DATE = "LoginDate";
     public final static String TAUX_COMPRESSION = "CrompressionRate";
+    public final static String ALERT_TYPE = "AlertType";
 
     // constantes
     public final static int TAUX_COMPRESSION_DEFAULT = 10;

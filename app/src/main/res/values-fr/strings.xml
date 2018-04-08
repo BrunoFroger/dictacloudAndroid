@@ -72,4 +72,10 @@
     <string name="file_detail_button_send">Envoyer</string>
     <string name="quality_level">Le niveau de qualité est de %s</string>
     <string name="title_activity_send_video">Enregistrement Vidéo</string>
+    <string name="media_select_alert_flash">Flash de la caméra</string>
+    <string name="media_select_alert_vibration">Vibration</string>
+    <string name="media_select_alert_led">Led de notification</string>
+    <string name="media_select_alert_message">Sélectionnez le mode d\'alerte a utiliser</string>
+    <string name="media_select_alert_none">Pas d\'alerte</string>
+    <string name="audio_recorded">Votre fichier audio est stocké</string>
 </resources>
