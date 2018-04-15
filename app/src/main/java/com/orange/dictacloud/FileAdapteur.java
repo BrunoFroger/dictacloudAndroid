@@ -32,8 +32,11 @@ public class FileAdapteur extends ArrayAdapter<Produit> {
         typeTextView.setText(produit.getType());
         TextView titreTextView = (TextView) convertView.findViewById(R.id.titreTextView);
         titreTextView.setText(produit.getTitre());
-        ImageView imageView = (ImageView) convertView.findViewById(R.id.produitFileView);
-        Picasso.with(getContext()).load(produit.getUrlImage()).into(imageView);
+        String tmp = produit.getUrlImage();
+        if (tmp != ""){
+            ImageView imageView = (ImageView) convertView.findViewById(R.id.produitFileView);
+            Picasso.with(getContext()).load(tmp).into(imageView);
+        }
         return convertView;
     }
 }

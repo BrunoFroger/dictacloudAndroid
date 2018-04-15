@@ -121,7 +121,7 @@ public class SendAudio extends Activity {
             Log.d(TAG, "BFR : Audio recorder released");
             mRecordMessage.setVisibility(View.INVISIBLE);
             isRecording=false;
-            activateAlert(true);
+            activateAlert(false);
 
             sendRequete("stopAudio");
             finish();
@@ -136,16 +136,15 @@ public class SendAudio extends Activity {
                 sendRequete("startAudio");
 
                 status = true;
-                startStreaming();
                 mRecordMessage.setVisibility(View.VISIBLE);
-                isRecording=true;
-                activateAlert(true);
             }
         }
 
     };
 
-    public void startStreaming() {
+    public void startRecording() {
+        isRecording=true;
+        activateAlert(true);
         Thread streamThread = new Thread(new Runnable() {
 
             @Override
@@ -236,9 +235,13 @@ public class SendAudio extends Activity {
                         }
                         if (mResult.equals("OK")) {
                             Log.d(TAG, "BFR : requete OK [" + mRequete + "] = " + mResult);
-                            Toast.makeText(SendAudio.this, getString(R.string.audio_recorded), Toast.LENGTH_LONG).show();
-                            if (returnTreatment == "stopAudio") {
+                            Log.d(TAG, "BFR : requete OK => fin du traitement " + returnTreatment);
+                            if (returnTreatment.equals("stopAudio")) {
+                                Toast.makeText(SendAudio.this, getString(R.string.audio_recorded), Toast.LENGTH_LONG).show();
                                 finish();
+                            }else{
+                                Log.d(TAG, "BFR : requete OK [" + mRequete + "] = " + mResult);
+                                startRecording();
                             }
                         } else {
                             //TODO affficher une popup avec le message d'erreur
@@ -263,6 +266,7 @@ public class SendAudio extends Activity {
 
                 param.put("REQUETE", "sendAudio");
                 param.put("FILENAME", mFilename);
+                param.put("PSEUDO", mPseudo);
                 param.put("TREATMENT", treatment);
                 Log.d(TAG, "BFR : getParams : " + param.toString());
                 return param;
@@ -324,12 +328,13 @@ public class SendAudio extends Activity {
                 case Constants.ALERT_FLASH:
                     Log.d(TAG, "BFR : allumage du flash");
                     mycam = Camera.open();
-                    p = mycam.getParameters();// = mycam.getParameters();
-                    p.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
-                    mycam.setParameters(p); //time passes
+                    p = mycam.getParameters();
+                    p.setFlashMode(Camera.Parameters.FLASH_MODE_ON);
+                    mycam.setParameters(p);
                     try {
-                        Thread.sleep(500);
+                        Thread.sleep(5000);
                     } catch (InterruptedException e) {
+                        Log.d(TAG, "BFR : erreur sur allumage du flash");
                         // TODO Auto-generated catch block
                         e.printStackTrace();
                     }

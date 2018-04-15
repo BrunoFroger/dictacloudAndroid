@@ -105,13 +105,39 @@ public class FilesActivity extends AppCompatActivity {
                             mRequete = pieces[0];
                             mResult = pieces[1];
                             mPseudo = pieces[2];
-
+                            String type;
+                            String url;
+                            String description;
+                            String filename;
                             for (int i = 3; i < pieces.length; i++) {
                                 int indice = i - 2;
-                                String type = "photo";
-                                String filename = pieces[i];
-                                String url = mPreferences.getString(Constants.ACCESS_PHOTO_SERVER, "") + "downloads/" + filename;
-                                String description = "...";
+                                filename = pieces[i];
+                                String[] filenameArray = filename.split("\\.");
+                                switch(filenameArray[4]){
+                                    case "jpeg":
+                                    case "jpg":
+                                        type="photo";
+                                        url = mPreferences.getString(Constants.ACCESS_PHOTO_SERVER, "") + "downloads/" + filename;
+                                        //url = mPreferences.getString(Constants.ACCESS_PHOTO_SERVER, "") + "controleurs/getMiniature.php?FILENAME=" + filename;
+                                        description = "...";
+                                        break;
+                                    case "audio":
+                                        type="audio";
+                                        url="";
+                                        description = "...";
+                                        break;
+                                    case "video":
+                                        type="video";
+                                        url="";
+                                        description = "...";
+                                        break;
+                                    default:
+                                        type="type inconnu";
+                                        url="";
+                                        description = "...";
+                                        break;
+                                }
+                                Log.d(TAG, "BFR : getListeFichiers : analyse du fichier " + filename + ", type = " + type);
                                 mProduits.add(new Produit(indice, type, filename, url, description));
                             }
                             populateListeProduits(mProduits);
