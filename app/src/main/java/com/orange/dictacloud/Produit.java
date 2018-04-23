@@ -30,14 +30,18 @@ public class Produit implements Serializable {
     @SerializedName("description")
     @Expose
     private String description;
+    @SerializedName("taille")
+    @Expose
+    private double taille;
 
     Produit(long numero, String type, String titre,
-            String url, String description) {
+            String url, String description, double taille) {
         this.numero = numero;
         this.type = type;
         this.titre = titre;
         this.urlImage = url;
         this.description = description;
+        this.taille=taille;
     }
 
     @Override
@@ -48,6 +52,7 @@ public class Produit implements Serializable {
                 ", titre='" + titre + '\'' +
                 ", urlImage='" + urlImage + '\'' +
                 ", description='" + description + '\'' +
+                ", taille='" + taille + '\'' +
                 '}';
     }
 
@@ -92,4 +97,6 @@ public class Produit implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public double getTaille(){return taille;}
 }

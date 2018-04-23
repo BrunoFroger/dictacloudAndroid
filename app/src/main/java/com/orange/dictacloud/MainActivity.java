@@ -98,6 +98,12 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
 
+        if (id == R.id.action_qr_code) {
+            Intent qrcodeIntent = new Intent(MainActivity.this, QRCodeDisplay.class);
+            startActivity(qrcodeIntent);
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 

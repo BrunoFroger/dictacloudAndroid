@@ -32,6 +32,8 @@ public class FileAdapteur extends ArrayAdapter<Produit> {
         typeTextView.setText(produit.getType());
         TextView titreTextView = (TextView) convertView.findViewById(R.id.titreTextView);
         titreTextView.setText(produit.getTitre());
+        TextView tailleTextView = (TextView) convertView.findViewById(R.id.tailleTextView);
+        tailleTextView.setText("" + produit.getTaille());
         String tmp = produit.getUrlImage();
         if (tmp != ""){
             ImageView imageView = (ImageView) convertView.findViewById(R.id.produitFileView);

@@ -46,6 +46,7 @@ public class SendAudio extends Activity {
     public byte[] buffer;
     public static DatagramSocket socket;
 
+    SharedPreferences mPreferences;
     AudioRecord mRecorder;
     private String mRequete = "sendAudio";
     private String mResult;
@@ -63,6 +64,7 @@ public class SendAudio extends Activity {
     private String mMessage;
     private String mPort;
     private String mAlertMode;
+    private String mServer;
 
 
     @Override
@@ -70,8 +72,12 @@ public class SendAudio extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_audio);
 
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mPseudo = preferences.getString(Constants.PSEUDO,"");
+        SharedPreferences mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mPseudo = mPreferences.getString(Constants.PSEUDO,"");
+        String mAccess = mPreferences.getString(Constants.ACCESS_TYPE,"");
+        if (mAccess.equals(Constants.ACCESS_TYPE_EXTERNAL)){
+            mServer=mPreferences.getString(Constants.EXTERNAL_SERVER_BASE,"");
+        }
 
         startButton = (Button) findViewById(R.id.start_button);
         stopButton = (Button) findViewById(R.id.stop_button);
@@ -89,7 +95,7 @@ public class SendAudio extends Activity {
         Log.d(TAG, "BFR : Filename = " + mFilename);
 
         // positionne le mode d'alerte pour enreigistrement audio/video
-        mAlertMode = preferences.getString(Constants.ALERT_TYPE,"");
+        mAlertMode = mPreferences.getString(Constants.ALERT_TYPE,"");
         RadioButton alertSelected;
         if (mAlertMode.equals(Constants.ALERT_FLASH)){
             alertSelected = (RadioButton) findViewById(R.id.RadioBt_select_alert_flash);
@@ -159,17 +165,22 @@ public class SendAudio extends Activity {
                     Log.d(TAG, "BFR : Buffer created of size " + minBufSize);
                     DatagramPacket packet;
 
+
+                    String url = mServer;
+                    /*
                     // TODO change adress of server
                     //String url = "livebox-3840.dtdns.net:8001/dictacloud/audioRecord/" + filename;
                     String url = "livebox-3840.dtdns.net";
                     //String url = preferences.getString(Constants.ACCESS_AUDIO_SERVER, "");
+                    */
                     Log.d(TAG, "BFR : adresse du serveur " + url);
                     //final InetAddress destination = InetAddress.getByName(url);
                     //final InetAddress destination = InetAddress.getByName("192.168.1.5");
                     final InetAddress destination = InetAddress.getByName(url);
                     Log.d(TAG, "BFR : Address retrieved = " + destination);
                     String adresseIp = destination.getHostAddress();
-
+                    //TODO prisoirement on fixe l'adresse IP avec le nom
+                    //adresseIp="192.168.1.39";
 
                     mRecorder = new AudioRecord(MediaRecorder.AudioSource.MIC, sampleRate, channelConfig, audioFormat, minBufSize * 10);
                     Log.d(TAG, "BFR : audio recorder initialized");
@@ -186,7 +197,7 @@ public class SendAudio extends Activity {
                         packet = new DatagramPacket(buffer, buffer.length, destination, Integer.parseInt(mPort));
                         // TODO uncomment send
                         socket.send(packet);
-                        //Log.d(TAG,"BFR : recordAudio : packet " + i++ + " traité : " + minBufSize);
+                        Log.d(TAG,"BFR : recordAudio : packet " + i++ + " traité : " + minBufSize);
                     }
 
                 } catch (UnknownHostException e) {

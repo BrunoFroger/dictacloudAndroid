@@ -12,6 +12,7 @@ public class Constants {
     public final static String ACCESS_TYPE_EXTERNAL = "External";
     public final static String INTERNAL_SERVER = "srvweb";
     public final static String EXTERNAL_SERVER = "livebox-3840.dtdns.net:8001";
+    public final static String EXTERNAL_SERVER_BASE = "livebox-3840.dtdns.net";
     public final static String INTERNAL_PHOTO_SERVER = "http://" + INTERNAL_SERVER + "/dictacloud/";
     public final static String EXTERNAL_PHOTO_SERVER = "http://" + EXTERNAL_SERVER + "/dictacloud/";
     public final static String INTERNAL_AUDIO_SERVER = "http://" + INTERNAL_SERVER + "/dictacloud/";

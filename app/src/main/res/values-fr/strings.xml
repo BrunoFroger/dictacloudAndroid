@@ -78,4 +78,6 @@
     <string name="media_select_alert_message">Sélectionnez le mode d\'alerte a utiliser</string>
     <string name="media_select_alert_none">Pas d\'alerte</string>
     <string name="audio_recorded">Votre fichier audio est stocké</string>
+    <string name="action_qr_code">QR Code</string>
+    <string name="title_activity_qrcode_display">QRCode pour téléchargement</string>
 </resources>

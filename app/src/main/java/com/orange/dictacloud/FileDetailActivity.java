@@ -76,7 +76,10 @@ public class FileDetailActivity extends AppCompatActivity {
         });
 
         ImageView urlImage = findViewById(R.id.file_detail_image);
-        Picasso.with(this).load(produit.getUrlImage()).into(urlImage);
+        String tmp = produit.getUrlImage();
+        if (tmp != ""){
+            Picasso.with(this).load(tmp).into(urlImage);
+        }
     }
 
     private boolean sendRequete(final String filename, final String requete) {

@@ -37,6 +37,7 @@ public class FilesActivity extends AppCompatActivity {
     private boolean statusResponse;
     private List<Produit> mProduits;
     private SharedPreferences mPreferences;
+    private double mTaille;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,23 +102,31 @@ public class FilesActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         // response
                         String[] pieces = response.split(":");
-                        if (pieces.length >= 3) {
+                        int nbParamFixe=3;
+                        if (pieces.length >= nbParamFixe) {
                             mRequete = pieces[0];
                             mResult = pieces[1];
                             mPseudo = pieces[2];
+                            //mTaille = Double.parseDouble(pieces[3]);
+                            mTaille=0;
                             String type;
                             String url;
                             String description;
                             String filename;
-                            for (int i = 3; i < pieces.length; i++) {
-                                int indice = i - 2;
-                                filename = pieces[i];
+                            for (int i = nbParamFixe; i < pieces.length; i++) {
+                                int indice = i - nbParamFixe + 1;
+                                Log.d(TAG, "BFR : onResponse : taille + fichier = (" + pieces[i] + ")");
+                                String[] tmp = pieces[i].split("\t");
+                                mTaille = Double.parseDouble(tmp[0]);
+                                Log.d(TAG, "BFR : onResponse : taille = " + tmp[0]);
+                                filename = tmp[1];
+                                Log.d(TAG, "BFR : onResponse : filename = (" + tmp[1] + ")");
                                 String[] filenameArray = filename.split("\\.");
                                 switch(filenameArray[4]){
                                     case "jpeg":
                                     case "jpg":
                                         type="photo";
-                                        url = mPreferences.getString(Constants.ACCESS_PHOTO_SERVER, "") + "downloads/" + filename;
+                                        url = mPreferences.getString(Constants.ACCESS_PHOTO_SERVER, "") + filename;
                                         //url = mPreferences.getString(Constants.ACCESS_PHOTO_SERVER, "") + "controleurs/getMiniature.php?FILENAME=" + filename;
                                         description = "...";
                                         break;
@@ -138,7 +147,7 @@ public class FilesActivity extends AppCompatActivity {
                                         break;
                                 }
                                 Log.d(TAG, "BFR : getListeFichiers : analyse du fichier " + filename + ", type = " + type);
-                                mProduits.add(new Produit(indice, type, filename, url, description));
+                                mProduits.add(new Produit(indice, type, filename, url, description, mTaille));
                             }
                             populateListeProduits(mProduits);
                         } else {
