@@ -80,4 +80,5 @@
     <string name="audio_recorded">Votre fichier audio est stocké</string>
     <string name="action_qr_code">QR Code</string>
     <string name="title_activity_qrcode_display">QRCode pour téléchargement</string>
+    <string name="qr_code_message">Flasher ce QR Code pour télécharger cette application</string>
 </resources>

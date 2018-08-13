@@ -44,6 +44,7 @@
     <string name="internal_server">Internal Access</string>
     <string name="traitement_mail">Send by mail</string>
     <string name="traitement_stockage">Local storage</string>
+    <string name="qr_code_message">Flash this QR Code to download this application</string>
 
     <!--        Send Audio Activity -->
     <string name="send_audio_title">Send Audio (in developpement, not operationnal)</string>

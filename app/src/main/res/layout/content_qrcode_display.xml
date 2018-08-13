@@ -9,8 +9,20 @@
     tools:context="com.orange.dictacloud.QRCodeDisplay"
     tools:showIn="@layout/activity_qrcode_display">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:padding="30dp"
+        android:text="@string/qr_code_message"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/static_qr_code_without_logo"/>
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/qr_code_dictacloud"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="123dp"/>
 </android.support.constraint.ConstraintLayout>
